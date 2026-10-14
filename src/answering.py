@@ -8,7 +8,7 @@ import json
 import re
 from pathlib import Path
 from src.relations import extract_relations, words, ID
-
+from src.retrieval import answer_requirements
 ROOT = Path(__file__).resolve().parents[1]
 REPORTS = ROOT / "reports"
 FALLBACK_THRESHOLDS = {"tfidf": 0.2428, "hybrid": 0.3028, "sentence-transformers": 0.3797}
@@ -111,39 +111,177 @@ def structured_answer(question, results, rel_index, max_facts=6):
         seen.add(key)
         facts.append({"fact": s, "doc": r["doc"], "page": r["page"], "source": r["source"], "evidence": r["evidence"]})
     return facts[:max_facts]
+def _identifier_evidence(identifier, results, max_chars=900):
+    """Find the passage associated with an exact requirement identifier."""
+    for r in results[:5]:
+        text = re.sub(r"\s+", " ", r.get("text", "")).strip()
+        match = re.search(
+            rf"(?<!\w){re.escape(identifier)}(?!\w)", text
+        )
+        if not match:
+            continue
 
+        # Prefer the text following the requirement ID.
+        remaining = text[match.end():]
+        next_id = re.search(rf"\b{ID}\b", remaining)
+
+        snippet = (
+            remaining[:next_id.start()]
+            if next_id
+            else remaining[:max_chars]
+        ).strip(" \t\n.;:-")
+
+        # If the ID is near the end of a passage, include nearby context.
+        if len(snippet) < 40:
+            start = max(0, match.start() - 250)
+            end = min(len(text), match.end() + max_chars)
+            snippet = text[start:end].strip()
+
+        if snippet:
+            return snippet[:max_chars], r
+
+    return None, None
 
 def answer_question(question, results, rel_index, threshold):
-    """Full grounded answer.
+    """Return a grounded answer with supporting citations."""
 
-    Order: (1) unknown identifier in the question -> abstain; (2) relations extracted from the
-    retrieved documents that match the question -> structured cited answer; (3) otherwise abstain
-    when the best retrieval score is below the tuned threshold; (4) else show closest evidence.
-    """
     if not results:
         reason = "No passages were retrieved."
-        return {"answer": "I cannot answer this confidently from the loaded documents. " + reason,
-                "facts": [], "citations": [], "abstained": True, "reason": reason, "mode": "abstain"}
+        return {
+            "answer": (
+                "I cannot answer this confidently from the loaded documents. "
+                + reason
+            ),
+            "facts": [],
+            "citations": [],
+            "abstained": True,
+            "reason": reason,
+            "mode": "abstain",
+        }
+
     ids = CANDIDATE.findall(question)
-    top_text = " ".join(r["text"] for r in results[:3])
-    missing = [i for i in ids if i not in top_text]
-    facts = None if missing else structured_answer(question, results, rel_index)
-    if missing or (not facts and results[0]["score"] < threshold):
-        reason = (f"The identifier {missing[0]} does not appear in the top retrieved passages." if missing else
-                  f"No matching relation was found and the best retrieval score {results[0]['score']:.3f} is below the tuned threshold {threshold:.3f}.")
-        return {"answer": "I cannot answer this confidently from the loaded documents. " + reason,
-                "facts": [], "citations": [], "abstained": True, "reason": reason, "mode": "abstain"}
+    req_ids = re.findall(r"\bRS_[A-Za-z]+_\d+\b", question, re.I)
+    top_text = " ".join(r["text"] for r in results[:5])
+    missing = [identifier for identifier in ids if identifier not in top_text]
+
+    # Answer requirement-ID questions directly from evidence.
+    if req_ids and not missing:
+        snippet, source_result = _identifier_evidence(req_ids[0], results)
+        if snippet and source_result:
+            citation = {
+                "document_id": source_result["document_id"],
+                "source": source_result["source"],
+                "page": source_result["page"],
+                "score": round(source_result["score"], 4),
+            }
+            return {
+                "answer": f"Requirement {req_ids[0]}: {snippet}",
+                "facts": [],
+                "citations": [citation],
+                "abstained": False,
+                "reason": "",
+                "mode": "requirement",
+            }
+
+    # Extract structured facts from the retrieved documents.
+    facts = (
+        None
+        if missing
+        else structured_answer(question, results, rel_index)
+    )
+
+    # Abstain if the requested identifier is missing or evidence is weak.
+    if missing or (
+        not facts and results[0]["score"] < threshold
+    ):
+        if missing:
+            reason = (
+                f"The identifier {missing[0]} does not appear "
+                "in the top retrieved passages."
+            )
+        else:
+            reason = (
+                "No matching relation was found and the best retrieval "
+                f"score {results[0]['score']:.3f} is below the tuned threshold."
+            )
+
+        return {
+            "answer": (
+                "I cannot answer this confidently from the loaded documents. "
+                + reason
+            ),
+            "facts": [],
+            "citations": [],
+            "abstained": True,
+            "reason": reason,
+            "mode": "abstain",
+        }
+
+    # Build a readable answer from extracted facts.
     if facts:
         by_fact = {}
-        for f in facts:
-            by_fact.setdefault(f["fact"], []).append(f["doc"])
-        lines = [f"{k} ({', '.join(sorted(set(v)))})" for k, v in by_fact.items()]
-        cites = {(f["doc"], f["page"]): {"document_id": f["doc"], "source": f["source"], "page": f["page"],
-                                         "score": round(results[0]["score"], 4)} for f in facts}
-        return {"answer": "; ".join(lines) + ".", "facts": facts, "citations": list(cites.values()),
-                "abstained": False, "reason": "", "mode": "structured"}
-    cites = [{"document_id": r["document_id"], "source": r["source"], "page": r["page"], "score": round(r["score"], 4)}
-             for r in results[:3]]
-    evidence = " ".join(r["text"].replace("\n", " ").strip() for r in results[:2])
-    return {"answer": "No exact relation was extracted, showing the closest retrieved evidence: " + evidence,
-            "facts": [], "citations": cites, "abstained": False, "reason": "", "mode": "evidence"}
+        for fact in facts:
+            by_fact.setdefault(fact["fact"], []).append(fact["doc"])
+
+        lines = [
+            f"{fact} ({', '.join(sorted(set(documents)))})"
+            for fact, documents in by_fact.items()
+        ]
+
+        citations_by_source = {}
+        for fact in facts:
+            key = (fact["doc"], fact["page"])
+            citations_by_source[key] = {
+                "document_id": fact["doc"],
+                "source": fact["source"],
+                "page": fact["page"],
+                "score": round(results[0]["score"], 4),
+            }
+
+        return {
+            "answer": "; ".join(lines),
+            "facts": facts,
+            "citations": list(citations_by_source.values()),
+            "abstained": False,
+            "reason": "",
+            "mode": "structured",
+        }
+        req = answer_requirements(question, results)
+        if req:
+            return {
+            "answer": req["answer"],
+            "facts": [],
+            "citations": [{**c, "score": round(results[0]["score"], 4)} for c in req["citations"]],
+            "abstained": False,
+            "reason": "",
+            "mode": "requirement",
+        }
+    # Fallback: show a short excerpt rather than a long raw passage.
+    citations = [
+        {
+            "document_id": result["document_id"],
+            "source": result["source"],
+            "page": result["page"],
+            "score": round(result["score"], 4),
+        }
+        for result in results[:3]
+    ]
+
+    evidence = " ".join(
+        " ".join(result["text"].split())
+        for result in results[:2]
+    )
+    if len(evidence) > 700:
+        evidence = evidence[:697].rsplit(" ", 1)[0] + "..."
+
+    return {
+        "answer": (
+            "No exact relation was extracted. "
+            "Here is the closest retrieved evidence: " + evidence
+        ),
+        "facts": [],
+        "citations": citations,
+        "abstained": False,
+        "reason": "",
+        "mode": "evidence",
+    }

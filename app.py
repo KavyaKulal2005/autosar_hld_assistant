@@ -9,7 +9,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 from src.document_loader import load_sample_documents, load_file, chunk_pages
-from src.retrieval import Retriever, HybridRetriever
+from src.retrieval import Retriever, HybridRetriever, answer_requirements
 from src.analysis import extract_entities
 from src.entity_model import load_model, predict_entities
 from src.relations import check_consistency, compare_relations
@@ -125,6 +125,13 @@ with tab1:
     if st.button("Search documents", type="primary", disabled=not question.strip()):
         results = retriever.search(question, top_k=top_k)
         response = answer_question(question, results, rel_index, threshold)
+        if response["mode"] == "evidence":          # the "no relation matched" case
+            req = answer_requirements(question, results)
+            if req:
+                response = {**response,
+                            "mode":"requirement",
+                            "answer": req["answer"],
+                            "citations": [{**c, "score": round(results[0]["score"], 4)} for c in req["citations"]]}
         st.session_state["last"] = {"question": question, "results": results, "response": response, "mode": retriever.mode}
         log_event("query", {"question": question, "retrieval_mode": retriever.mode, "answer_mode": response["mode"],
                             "abstained": response["abstained"], "top_score": round(results[0]["score"], 4) if results else None,
@@ -132,8 +139,10 @@ with tab1:
     last = st.session_state.get("last")
     if last:
         response, results = last["response"], last["results"]
-        label = {"structured": "Structured answer from extracted relations", "evidence": "Closest evidence (no relation matched)",
-                 "abstain": "Abstained"}[response["mode"]]
+        label = {"structured": "Structured answer from extracted relations",
+         "requirement": "Matching requirement(s)",
+         "evidence": "Closest evidence (no relation matched)",
+         "abstain": "Abstained"}.get(response["mode"], "Answer")
         st.markdown(f"### Answer — {label}")
         if response["abstained"]:
             st.warning(response["answer"])
