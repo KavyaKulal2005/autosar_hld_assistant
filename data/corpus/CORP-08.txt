@@ -1,0 +1,43 @@
+DOCUMENT: CORP-08
+TITLE: Synthetic Lighting Architecture
+REVISION: A
+SECTION: Overview
+This synthetic high-level design describes the lighting software architecture.
+It defines 5 software components, 3 interfaces and 7 signals.
+
+SECTION: Component Catalogue
+- SeatService: reports diagnostic events to the diagnostic manager.
+- ParkingController: reports diagnostic events to the diagnostic manager.
+- ChargingHandler: arbitrates access to shared vehicle resources.
+- WiperMonitor: arbitrates access to shared vehicle resources.
+- SteeringService: reports diagnostic events to the diagnostic manager.
+
+SECTION: Signals
+The SeatService publishes the BrakeHealth signal via the CabinFeedOutput port and the ChargingHandler consumes BrakeHealth.
+The WiperMonitor publishes the GearCommand signal via the ParkingStatusOutput port and the SteeringService consumes GearCommand.
+The WiperMonitor publishes the ChargeCurrent signal via the BatteryFeedOutput port and the ChargingHandler consumes ChargeCurrent.
+The WiperMonitor publishes the CabinRequest signal via the ParkingStatusOutput port and the ChargingHandler consumes CabinRequest.
+The WiperMonitor publishes the SteeringTemperature signal via the CabinFeedOutput port and the SeatService consumes SteeringTemperature.
+The SteeringService publishes the ChargeTemperature signal via the CabinFeedOutput port and the SeatService consumes ChargeTemperature.
+The SteeringService publishes the GearSpeed signal via the CabinFeedOutput port and the ChargingHandler consumes GearSpeed.
+
+SECTION: Interfaces
+The ParkingController provides the DoorTorqueService interface to the ChargingHandler component for CabinRequest.
+| ParkingController | DoorTorqueService | ChargingHandler | CabinRequest |
+The ChargingHandler provides the NetworkTorqueService interface to the ParkingController component for SteeringTemperature.
+| ChargingHandler | NetworkTorqueService | ParkingController | SteeringTemperature |
+The WiperMonitor provides the SteeringModeService interface to the ParkingController component for ChargeTemperature.
+| WiperMonitor | SteeringModeService | ParkingController | ChargeTemperature |
+
+SECTION: Dependencies
+The WiperMonitor component depends on SeatService for ChargeCurrent.
+The ChargingHandler component depends on WiperMonitor for GearCommand.
+The ChargingHandler component depends on ParkingController for GearSpeed.
+The SteeringService component depends on SeatProxy for GearSpeed.
+The ChargingHandler consumes WiperDiagnostics, which no component is documented to publish.
+
+SECTION: Test Considerations
+Each interface requires one positive and one negative integration test.
+
+SECTION: Revision History
+Revision A: synthetic release for evaluation.

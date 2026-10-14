@@ -1,0 +1,25 @@
+DOCUMENT: SYN-TRAIN-12
+TITLE: Synthetic Architecture SYN-TRAIN-12
+REVISION: A
+SECTION: Overview
+The BodyHandler uses GatewaySpeedApi.
+The BodyHandler uses BodyTorqueInterface.
+The EngineHandler uses BodyTorqueInterface.
+The ClimateMonitor component depends on BodyHandler for EngineVoltage.
+The ClimateMonitor publishes the CabinCommand signal via the BrakeFeedOutput port.
+The EngineHandler exposes BodyTorqueInterface for DoorAngle exchange.
+The DoorService receives CabinCommand from BodyHandler.
+The EngineHandler provides the GatewaySpeedApi interface to the ClimateMonitor component.
+The BodyHandler consumes CabinCommand.
+The EngineHandler publishes DoorAngle through BatteryFeedInput.
+The ClimateMonitor receives CabinAngle from EngineHandler.
+The DoorService consumes DoorAngle through the GatewaySpeedApi interface.
+The ClimateMonitor exposes BodyTorqueInterface for DoorAngle exchange.
+The DoorService publishes EngineVoltage.
+The ClimateMonitor publishes DoorAngle.
+The ClimateMonitor provides the GatewaySpeedApi interface to the DoorService component.
+The ClimateMonitor provides the BodyTorqueInterface interface to the BodyHandler component.
+The ClimateMonitor publishes the DoorAngle signal via the BatteryFeedInput port.
+The EngineHandler provides the GatewaySpeedApi interface to the ClimateMonitor component.
+See the DesignReview for further details.
+See the TestPlan for further details.

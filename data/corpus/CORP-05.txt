@@ -1,0 +1,43 @@
+DOCUMENT: CORP-05
+TITLE: Synthetic Comfort Architecture
+REVISION: A
+SECTION: Overview
+This synthetic high-level design describes the comfort software architecture.
+It defines 6 software components, 3 interfaces and 5 signals.
+
+SECTION: Component Catalogue
+- BatteryService: monitors the health of connected sensors.
+- MirrorModule: reports diagnostic events to the diagnostic manager.
+- DiagMonitor: coordinates requests from other software components.
+- BrakeHandler: monitors the health of connected sensors.
+- DoorModule: monitors the health of connected sensors.
+- DoorController: monitors the health of connected sensors.
+
+SECTION: Signals
+The DiagMonitor publishes the WheelTorque signal via the DoorStatusChannel port and the BrakeHandler consumes WheelTorque.
+The BatteryService publishes the ChargePosition signal via the SteeringStatusPort port and the DoorController consumes ChargePosition.
+The MirrorModule publishes the BatteryLevel signal via the SteeringStatusPort port and the DoorModule consumes BatteryLevel.
+The BrakeHandler publishes the GearRequest signal via the DoorStatusChannel port and the MirrorModule consumes GearRequest.
+The BatteryService publishes the CruiseRequest signal via the SteeringStatusPort port and the DoorController consumes CruiseRequest.
+
+SECTION: Interfaces
+The DiagMonitor provides the BodyStateInfo interface to the BrakeHandler component for ChargePosition.
+| DiagMonitor | BodyStateInfo | BrakeHandler | ChargePosition |
+The DiagMonitor provides the DiagSpeedInterface interface to the BatteryService component for BatteryLevel.
+| DiagMonitor | DiagSpeedInterface | BatteryService | BatteryLevel |
+The MirrorModule provides the GatewayTorqueData interface to the BatteryService component for GearRequest.
+| MirrorModule | GatewayTorqueData | BatteryService | GearRequest |
+
+SECTION: Dependencies
+The DoorController component depends on MirrorModule for ChargePosition.
+The BrakeHandler component depends on DiagMonitor for GearRequest.
+The BatteryService component depends on DoorModule for WheelTorque.
+The BatteryService component depends on DoorController for WheelTorque.
+The DoorModule component depends on DoorController for CruiseRequest.
+The DiagMonitor consumes MirrorDiagnostics, which no component is documented to publish.
+
+SECTION: Test Considerations
+Each interface requires one positive and one negative integration test.
+
+SECTION: Revision History
+Revision A: synthetic release for evaluation.

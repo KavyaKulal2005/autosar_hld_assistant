@@ -1,0 +1,22 @@
+DOCUMENT: SYN-TRAIN-02
+TITLE: Synthetic Architecture SYN-TRAIN-02
+REVISION: A
+SECTION: Overview
+The BatteryController provides the ClimateSpeedInfo interface to the EngineMonitor component.
+The NetworkController provides the ClimateSpeedInfo interface to the BodyHandler component.
+The BatteryController forwards selected signals to the BodyHandler component.
+BrakeFeedPort carries BrakeVoltage from the NetworkController.
+The SensorService sends SteeringTemperature via BatteryCmdOutput.
+The BatteryController sends DoorCommand via CabinFeedLink.
+The SensorService forwards selected signals to the NetworkController component.
+CabinFeedLink carries SteeringTemperature from the BodyHandler.
+The BatteryController sends DoorCommand via BrakeFeedPort.
+The BatteryController uses SensorModeApi.
+The BatteryController sends DoorCommand via CabinFeedLink.
+The EngineMonitor exposes ClimateSpeedInfo for DoorCommand exchange.
+The BatteryController provides the ClimateSpeedInfo interface to the NetworkController component.
+The SensorService component depends on BodyHandler for BrakeTemperature.
+The GatewayHandler consumes BrakeTemperature.
+The EngineMonitor consumes SteeringTemperature through the SensorModeApi interface.
+See the RevisionHistory for further details.
+See the DesignReview for further details.

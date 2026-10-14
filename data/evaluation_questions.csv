@@ -1,0 +1,6 @@
+question,expected_terms,expected_document_id
+Which component publishes VehicleSpeed?,SensorManager,HLD-01
+Which interface carries BrakeStatus?,BrakeStatusPort,HLD-01
+Which component publishes DoorStatus?,DoorSensor,HLD-02
+Which component consumes GatewayHealth?,BodyControl,HLD-02
+Which component forwards signals to BodyControl?,VehicleGateway,HLD-01

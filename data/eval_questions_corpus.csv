@@ -1,0 +1,37 @@
+question,type,answerable,split,gold
+Which component publishes SteeringTemperature?,keyword,True,dev,"[[""CORP-02"", ""WindowController""], [""CORP-02-B"", ""WindowController""], [""CORP-08"", ""WiperMonitor""]]"
+What does WiperMonitor depend on for ChargeCurrent?,keyword,True,test,"[[""CORP-08"", ""SeatService""]]"
+Which component provides the SeatStateService interface?,keyword,True,dev,"[[""CORP-09"", ""BodyService""]]"
+Which component publishes DoorAngle?,keyword,True,test,"[[""CORP-02"", ""BrakeModule""], [""CORP-02-B"", ""BrakeModule""], [""CORP-03-B"", ""LightingMonitor""]]"
+Who offers the diag speed data interface to other components?,paraphrase,True,dev,"[[""CORP-02"", ""AirbagDriver""], [""CORP-02-B"", ""AirbagDriver""]]"
+Which software component is the source of the charge temperature signal?,paraphrase,True,test,"[[""CORP-08"", ""SteeringService""], [""CORP-10"", ""NetworkService""]]"
+Which component publishes RadarBlindness?,unanswerable,False,dev,[]
+Which software component is the source of the mirror state signal?,paraphrase,True,test,"[[""CORP-02"", ""LightingCoordinator""], [""CORP-02-B"", ""LightingCoordinator""]]"
+Which OEM owns this design?,unanswerable,False,dev,[]
+Where does the door health signal originate?,paraphrase,True,test,"[[""CORP-06"", ""DoorModule""]]"
+Which component publishes GearStatus?,keyword,True,dev,"[[""CORP-02-B"", ""WindowController""]]"
+What does AirbagDriver depend on for EngineLevel?,keyword,True,test,"[[""CORP-04"", ""ParkingMonitor""]]"
+What does the sensor service rely on for parking voltage?,paraphrase,True,dev,"[[""CORP-07"", ""GatewayController""]]"
+Which component publishes ThrottleLeakRate?,unanswerable,False,test,[]
+Where does the cabin torque signal originate?,paraphrase,True,dev,"[[""CORP-09"", ""NetworkHandler""]]"
+Which component provides the EngineStateService interface?,keyword,True,test,"[[""CORP-10"", ""ClimateMonitor""]]"
+Who approved this architecture?,unanswerable,False,dev,[]
+Which component publishes VehicleAngle?,keyword,True,test,"[[""CORP-03"", ""NetworkModule""], [""CORP-03-B"", ""NetworkModule""]]"
+Who offers the body state info interface to other components?,paraphrase,True,dev,"[[""CORP-05"", ""DiagMonitor""]]"
+Which component publishes WheelStatus?,keyword,True,test,"[[""CORP-06"", ""DiagService""]]"
+What produces the wheel speed signal?,paraphrase,True,dev,"[[""CORP-03"", ""LightingMonitor""], [""CORP-03-B"", ""LightingMonitor""]]"
+What does the seat service rely on for pedal current?,paraphrase,True,test,"[[""CORP-01-B"", ""LightingController""]]"
+Who offers the window state interface interface to other components?,paraphrase,True,dev,"[[""CORP-02"", ""NetworkDriver""], [""CORP-02-B"", ""NetworkDriver""]]"
+Which component publishes WheelTemperature?,keyword,True,test,"[[""CORP-07"", ""ChargingModule""]]"
+What produces the wheel angle signal?,paraphrase,True,dev,"[[""CORP-02"", ""WindowController""]]"
+Which component publishes BrakeAngle?,keyword,True,test,"[[""CORP-07"", ""BodyService""]]"
+What is the CAN FD data phase bit rate?,unanswerable,False,dev,[]
+What does the door module rely on for battery request?,paraphrase,True,test,"[[""CORP-06"", ""ClimateCoordinator""]]"
+What produces the charge current signal?,paraphrase,True,dev,"[[""CORP-08"", ""WiperMonitor""]]"
+Which component provides the LightingTorqueInterface interface?,keyword,True,test,"[[""CORP-09"", ""WindowModule""]]"
+Which component publishes HornDutyCycle?,unanswerable,False,dev,[]
+Which software component is the source of the engine status signal?,paraphrase,True,test,"[[""CORP-01"", ""BrakeService""]]"
+Which component publishes TyrePressureDelta?,unanswerable,False,dev,[]
+What is the ASIL level of the braking function?,unanswerable,False,test,[]
+What does GatewayController depend on for WindowCurrent?,keyword,True,dev,"[[""CORP-07"", ""SensorService""]]"
+Which component publishes DoorCommand?,keyword,True,test,"[[""CORP-09"", ""NetworkHandler""]]"

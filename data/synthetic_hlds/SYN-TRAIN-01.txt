@@ -1,0 +1,23 @@
+DOCUMENT: SYN-TRAIN-01
+TITLE: Synthetic Architecture SYN-TRAIN-01
+REVISION: A
+SECTION: Overview
+The SteeringHandler publishes WheelStatus through BrakeCmdOutput.
+The DoorService forwards selected signals to the SteeringHandler component.
+The DoorService consumes BrakeTorque.
+The BodyHandler publishes BrakeTorque through BrakeFeedInput.
+The SteeringHandler publishes the DoorSpeed signal via the BrakeFeedInput port.
+The DoorService publishes BrakeHealth.
+The BodyHandler receives BrakeHealth from DoorService.
+The ClimateService uses DoorSpeedFacade.
+The BodyHandler receives BrakeHealth from DoorService.
+The BodyHandler exposes ClimateTorqueData for WheelStatus exchange.
+The BodyHandler forwards selected signals to the ClimateService component.
+The SteeringHandler publishes the BrakeHealth signal via the BrakeFeedInput port.
+The SteeringHandler sends BrakeTemperature via BrakeCmdOutput.
+The BodyHandler provides the ClimateTorqueData interface to the SteeringHandler component.
+The BodyHandler receives WheelVoltage from DoorService.
+The SteeringHandler uses EngineTorqueData.
+BrakeFeedInput carries WheelStatus from the ClimateService.
+See the ReleaseNotes for further details.
+See the ChangeRequest for further details.

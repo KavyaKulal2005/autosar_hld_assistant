@@ -1,0 +1,362 @@
+{
+  "SYN-TRAIN-01": {
+    "split": "train",
+    "labels": {
+      "BodyHandler": "component",
+      "ClimateService": "component",
+      "DoorService": "component",
+      "SteeringHandler": "component",
+      "BrakeHealth": "signal",
+      "BrakeTemperature": "signal",
+      "BrakeTorque": "signal",
+      "DoorSpeed": "signal",
+      "WheelStatus": "signal",
+      "WheelVoltage": "signal",
+      "BrakeCmdOutput": "port",
+      "BrakeFeedInput": "port",
+      "ClimateTorqueData": "interface",
+      "DoorSpeedFacade": "interface",
+      "EngineTorqueData": "interface",
+      "ReleaseNotes": "other",
+      "ChangeRequest": "other"
+    }
+  },
+  "SYN-TRAIN-02": {
+    "split": "train",
+    "labels": {
+      "BatteryController": "component",
+      "BodyHandler": "component",
+      "EngineMonitor": "component",
+      "GatewayHandler": "component",
+      "NetworkController": "component",
+      "SensorService": "component",
+      "BrakeTemperature": "signal",
+      "BrakeVoltage": "signal",
+      "DoorCommand": "signal",
+      "SteeringTemperature": "signal",
+      "BatteryCmdOutput": "port",
+      "BrakeFeedPort": "port",
+      "CabinFeedLink": "port",
+      "ClimateSpeedInfo": "interface",
+      "SensorModeApi": "interface",
+      "RevisionHistory": "other",
+      "DesignReview": "other"
+    }
+  },
+  "SYN-TRAIN-03": {
+    "split": "train",
+    "labels": {
+      "ClimateModule": "component",
+      "DoorMonitor": "component",
+      "NetworkController": "component",
+      "NetworkModule": "component",
+      "BrakeHealth": "signal",
+      "CabinSpeed": "signal",
+      "GearHealth": "signal",
+      "WheelSpeed": "signal",
+      "GearDataOutput": "port",
+      "SteeringStatusLink": "port",
+      "BodyTorqueApi": "interface",
+      "ClimateTorqueData": "interface",
+      "ClimateTorqueInfo": "interface",
+      "RevisionHistory": "other",
+      "TestPlan": "other"
+    }
+  },
+  "SYN-TRAIN-04": {
+    "split": "train",
+    "labels": {
+      "BodyDriver": "component",
+      "BrakeMonitor": "component",
+      "BrakeService": "component",
+      "ClimateHandler": "component",
+      "EngineService": "component",
+      "SteeringService": "component",
+      "BrakeSpeed": "signal",
+      "EngineAngle": "signal",
+      "GearTorque": "signal",
+      "VehicleCommand": "signal",
+      "WheelVoltage": "signal",
+      "BrakeDataLink": "port",
+      "BrakeFeedInput": "port",
+      "VehicleFeedChannel": "port",
+      "BatteryStateInfo": "interface",
+      "BodySpeedInterface": "interface",
+      "GatewayModeInterface": "interface",
+      "RevisionHistory": "other",
+      "BuildConfig": "other"
+    }
+  },
+  "SYN-TRAIN-05": {
+    "split": "train",
+    "labels": {
+      "BodyManager": "component",
+      "DoorDriver": "component",
+      "EngineHandler": "component",
+      "EngineService": "component",
+      "BatterySpeed": "signal",
+      "BrakeTorque": "signal",
+      "WheelTemperature": "signal",
+      "BatteryDataOutput": "port",
+      "DoorDataPort": "port",
+      "VehicleFeedChannel": "port",
+      "BatteryModeApi": "interface",
+      "SensorSpeedService": "interface",
+      "DesignReview": "other",
+      "ChangeRequest": "other"
+    }
+  },
+  "SYN-TRAIN-06": {
+    "split": "train",
+    "labels": {
+      "BodyController": "component",
+      "BodyMonitor": "component",
+      "BrakeManager": "component",
+      "GatewayController": "component",
+      "GatewayMonitor": "component",
+      "NetworkModule": "component",
+      "BatteryHealth": "signal",
+      "CabinAngle": "signal",
+      "SteeringVoltage": "signal",
+      "WheelAngle": "signal",
+      "EngineCmdInput": "port",
+      "DoorModeInfo": "interface",
+      "NetworkModeInterface": "interface",
+      "NetworkModeService": "interface",
+      "ReleaseNotes": "other",
+      "SystemOverview": "other"
+    }
+  },
+  "SYN-TRAIN-07": {
+    "split": "train",
+    "labels": {
+      "BatteryMonitor": "component",
+      "BrakeController": "component",
+      "ClimateHandler": "component",
+      "GatewayDriver": "component",
+      "SteeringManager": "component",
+      "SteeringModule": "component",
+      "BatteryStatus": "signal",
+      "BatteryVoltage": "signal",
+      "DoorCommand": "signal",
+      "EngineTorque": "signal",
+      "SteeringHealth": "signal",
+      "SteeringTorque": "signal",
+      "BatteryCmdChannel": "port",
+      "BatteryStatusInput": "port",
+      "EngineFeedLink": "port",
+      "BatteryStateInfo": "interface",
+      "SteeringModeApi": "interface",
+      "SteeringTorqueApi": "interface",
+      "RevisionHistory": "other",
+      "BuildConfig": "other"
+    }
+  },
+  "SYN-TRAIN-08": {
+    "split": "train",
+    "labels": {
+      "ClimateHandler": "component",
+      "ClimateMonitor": "component",
+      "GatewayController": "component",
+      "NetworkMonitor": "component",
+      "BatteryCommand": "signal",
+      "DoorTorque": "signal",
+      "EngineCommand": "signal",
+      "VehicleTorque": "signal",
+      "GearDataLink": "port",
+      "WheelDataLink": "port",
+      "ClimateModeData": "interface",
+      "SteeringStateContract": "interface",
+      "TestPlan": "other",
+      "ChangeRequest": "other"
+    }
+  },
+  "SYN-TRAIN-09": {
+    "split": "train",
+    "labels": {
+      "BrakeService": "component",
+      "ClimateService": "component",
+      "EngineManager": "component",
+      "GatewayHandler": "component",
+      "BrakeHealth": "signal",
+      "BrakeStatus": "signal",
+      "BrakeTemperature": "signal",
+      "GearAngle": "signal",
+      "WheelTemperature": "signal",
+      "BrakeDataOutput": "port",
+      "BrakeStatusOutput": "port",
+      "VehicleCmdInput": "port",
+      "ClimateTorqueData": "interface",
+      "SensorSpeedInterface": "interface",
+      "SafetyCase": "other",
+      "TestPlan": "other"
+    }
+  },
+  "SYN-TRAIN-10": {
+    "split": "train",
+    "labels": {
+      "EngineHandler": "component",
+      "EngineMonitor": "component",
+      "SensorManager": "component",
+      "SteeringModule": "component",
+      "BrakeVoltage": "signal",
+      "CabinHealth": "signal",
+      "DoorTemperature": "signal",
+      "GearTorque": "signal",
+      "WheelHealth": "signal",
+      "BatteryDataLine": "port",
+      "EngineFeedOutput": "port",
+      "ClimateStateApi": "interface",
+      "SensorModeInfo": "interface",
+      "DesignReview": "other",
+      "SystemOverview": "other"
+    }
+  },
+  "SYN-TRAIN-11": {
+    "split": "train",
+    "labels": {
+      "BatteryService": "component",
+      "BrakeMonitor": "component",
+      "ClimateHandler": "component",
+      "GatewayService": "component",
+      "NetworkController": "component",
+      "EngineVoltage": "signal",
+      "GearStatus": "signal",
+      "GearTemperature": "signal",
+      "VehicleAngle": "signal",
+      "VehicleStatus": "signal",
+      "CabinFeedLine": "port",
+      "DoorCmdPort": "port",
+      "DoorModeApi": "interface",
+      "EngineStateData": "interface",
+      "DesignReview": "other",
+      "ReleaseNotes": "other"
+    }
+  },
+  "SYN-TRAIN-12": {
+    "split": "train",
+    "labels": {
+      "BodyHandler": "component",
+      "ClimateMonitor": "component",
+      "DoorService": "component",
+      "EngineHandler": "component",
+      "CabinAngle": "signal",
+      "CabinCommand": "signal",
+      "DoorAngle": "signal",
+      "EngineVoltage": "signal",
+      "BatteryFeedInput": "port",
+      "BrakeFeedOutput": "port",
+      "BodyTorqueInterface": "interface",
+      "GatewaySpeedApi": "interface",
+      "DesignReview": "other",
+      "TestPlan": "other"
+    }
+  },
+  "SYN-TEST-01": {
+    "split": "test",
+    "labels": {
+      "ChargingManager": "component",
+      "DiagController": "component",
+      "DiagManager": "component",
+      "DiagMonitor": "component",
+      "WiperController": "component",
+      "AmbientSpeed": "signal",
+      "ChargeState": "signal",
+      "CruiseTorque": "signal",
+      "SeatTorque": "signal",
+      "AmbientCmdPort": "port",
+      "AmbientDataLine": "port",
+      "CruiseDataLink": "port",
+      "CruiseStateContract": "interface",
+      "LightingSpeedInterface": "interface",
+      "SafetyCase": "other",
+      "TestPlan": "other"
+    }
+  },
+  "SYN-TEST-02": {
+    "split": "test",
+    "labels": {
+      "ChargingCoordinator": "component",
+      "DiagMonitor": "component",
+      "ParkingDriver": "component",
+      "SeatCoordinator": "component",
+      "WiperSupervisor": "component",
+      "AmbientTorque": "signal",
+      "ChargePosition": "signal",
+      "CruisePosition": "signal",
+      "PedalLevel": "signal",
+      "PedalRequest": "signal",
+      "AmbientStatusLine": "port",
+      "WiperCmdPort": "port",
+      "ChargingModeService": "interface",
+      "DiagStateInfo": "interface",
+      "LightingTorqueContract": "interface",
+      "ReleaseNotes": "other",
+      "TestPlan": "other"
+    }
+  },
+  "SYN-TEST-03": {
+    "split": "test",
+    "labels": {
+      "CruiseCoordinator": "component",
+      "DiagDriver": "component",
+      "DiagSupervisor": "component",
+      "SeatDriver": "component",
+      "WiperSupervisor": "component",
+      "AmbientLevel": "signal",
+      "CruiseRequest": "signal",
+      "ParkingCurrent": "signal",
+      "ParkingTorque": "signal",
+      "PedalTorque": "signal",
+      "SeatTorque": "signal",
+      "ParkingCmdHook": "port",
+      "SeatCmdOutput": "port",
+      "DiagModeData": "interface",
+      "WiperSpeedData": "interface",
+      "TestPlan": "other",
+      "ChangeRequest": "other"
+    }
+  },
+  "SYN-TEST-04": {
+    "split": "test",
+    "labels": {
+      "CruiseController": "component",
+      "DiagDriver": "component",
+      "LightingController": "component",
+      "WiperMonitor": "component",
+      "CruiseLevel": "signal",
+      "CruisePosition": "signal",
+      "SeatRequest": "signal",
+      "WiperTorque": "signal",
+      "ParkingCmdPort": "port",
+      "PedalCmdHook": "port",
+      "WiperStatusOutput": "port",
+      "ChargingStateInfo": "interface",
+      "LightingModeData": "interface",
+      "SeatModeData": "interface",
+      "RevisionHistory": "other",
+      "TestPlan": "other"
+    }
+  },
+  "SYN-TEST-05": {
+    "split": "test",
+    "labels": {
+      "ChargingDriver": "component",
+      "CruiseSupervisor": "component",
+      "LightingCoordinator": "component",
+      "LightingDriver": "component",
+      "LightingMonitor": "component",
+      "WiperCoordinator": "component",
+      "CruiseSpeed": "signal",
+      "CruiseState": "signal",
+      "ParkingPosition": "signal",
+      "PedalPosition": "signal",
+      "CruiseDataHook": "port",
+      "PedalStatusPort": "port",
+      "WiperDataChannel": "port",
+      "WiperTorqueInfo": "interface",
+      "DesignReview": "other",
+      "ReleaseNotes": "other"
+    }
+  }
+}

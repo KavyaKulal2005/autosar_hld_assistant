@@ -1,0 +1,70 @@
+{
+  "retriever_mode": "sentence-transformers",
+  "test_questions": 5,
+  "top_k": 3,
+  "document_hit_rate_at_k": 1.0,
+  "mrr": 0.9,
+  "per_question": [
+    {
+      "question": "Which component publishes VehicleSpeed?",
+      "expected_document_id": "HLD-01",
+      "retrieved_document_ids": [
+        "HLD-01",
+        "HLD-02",
+        "HLD-01"
+      ],
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.5491702556610107
+    },
+    {
+      "question": "Which interface carries BrakeStatus?",
+      "expected_document_id": "HLD-01",
+      "retrieved_document_ids": [
+        "HLD-01",
+        "HLD-01",
+        "HLD-02"
+      ],
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.748491644859314
+    },
+    {
+      "question": "Which component publishes DoorStatus?",
+      "expected_document_id": "HLD-02",
+      "retrieved_document_ids": [
+        "HLD-02",
+        "HLD-01",
+        "HLD-01"
+      ],
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.4917144775390625
+    },
+    {
+      "question": "Which component consumes GatewayHealth?",
+      "expected_document_id": "HLD-02",
+      "retrieved_document_ids": [
+        "HLD-02",
+        "HLD-01",
+        "HLD-01"
+      ],
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.5566202998161316
+    },
+    {
+      "question": "Which component forwards signals to BodyControl?",
+      "expected_document_id": "HLD-01",
+      "retrieved_document_ids": [
+        "HLD-02",
+        "HLD-01",
+        "HLD-01"
+      ],
+      "hit_at_k": true,
+      "reciprocal_rank": 0.5,
+      "top_score": 0.49813488125801086
+    }
+  ],
+  "note": "Small synthetic evaluation set. Metrics are not evidence of real-world automotive performance."
+}

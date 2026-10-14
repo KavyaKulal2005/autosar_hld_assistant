@@ -1,0 +1,29 @@
+{
+  "documents": 13,
+  "revision_pairs": 3,
+  "total_words": 4044,
+  "avg_words_per_document": 311.1,
+  "chunks": 75,
+  "chunk_chars_mean": 513.9,
+  "chunk_chars_max": 769,
+  "unique_entities": 183,
+  "entities_by_type": {
+    "signal": 90,
+    "component": 84,
+    "port": 39,
+    "interface": 39
+  },
+  "relations_by_type": {
+    "publishes": 81,
+    "consumes": 81,
+    "depends_on": 57,
+    "provides": 39
+  },
+  "injected_issues_by_type": {
+    "orphan_signal": 9,
+    "undefined_component": 8
+  },
+  "entities_appearing_in_multiple_docs": 59,
+  "vocabulary_size": 273,
+  "missing_values_in_entity_table": 0
+}

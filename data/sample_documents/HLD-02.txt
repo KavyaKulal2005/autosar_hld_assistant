@@ -1,0 +1,15 @@
+DOCUMENT: HLD-02
+TITLE: Synthetic Gateway and Body Control Architecture
+REVISION: B
+SECTION: Interfaces
+The VehicleGateway consumes VehicleSpeed through SpeedData.
+The VehicleGateway publishes GatewayHealth through GatewayStatusPort.
+The BodyControl component consumes GatewayHealth from VehicleGateway.
+
+SECTION: Dependencies
+The BodyControl component depends on VehicleGateway for GatewayHealth.
+The DoorSensor publishes DoorStatus through DoorStatusPort.
+The BodyControl component receives DoorStatus from DoorSensor and publishes CabinLightCommand.
+
+SECTION: Notes
+This sample is synthetic. It intentionally provides a small, safe test bed for document retrieval and rule validation.

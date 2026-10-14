@@ -1,0 +1,20 @@
+DOCUMENT: HLD-01
+TITLE: Synthetic Vehicle Speed and Braking Architecture
+REVISION: A
+SECTION: Overview
+This illustrative high-level design describes a synthetic vehicle software architecture.
+The SensorManager receives speed measurements from SpeedSensor and publishes the VehicleSpeed signal.
+The SensorManager provides the SpeedData interface to the VehicleGateway component.
+
+SECTION: Braking
+The BrakeController consumes VehicleSpeed through the SpeedData interface.
+The BrakeController publishes the BrakeStatus signal through the BrakeStatusPort interface.
+The BrakeModule provides braking status to the BrakeController.
+
+SECTION: Gateway
+The VehicleGateway forwards selected vehicle signals to the BodyControl component.
+The VehicleGateway uses the GatewayInput interface.
+The BodyControl component consumes DoorStatus and publishes CabinLightCommand.
+
+SECTION: Notes
+This sample is synthetic for educational demonstration. It is not a real vehicle design or AUTOSAR specification.

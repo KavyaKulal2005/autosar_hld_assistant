@@ -1,0 +1,26 @@
+DOCUMENT: SYN-TEST-05
+TITLE: Synthetic Architecture SYN-TEST-05
+REVISION: A
+SECTION: Overview
+The LightingCoordinator receives CruiseSpeed from WiperCoordinator.
+LightingDriver and WiperCoordinator exchange ParkingPosition.
+LightingDriver and LightingCoordinator exchange CruiseState.
+Via CruiseDataHook, the LightingCoordinator distributes ParkingPosition.
+ParkingPosition is emitted by the LightingCoordinator on CruiseDataHook.
+The WiperCoordinator consumes ParkingPosition.
+The ChargingDriver exposes WiperTorqueInfo for CruiseSpeed exchange.
+Via PedalStatusPort, the WiperCoordinator distributes PedalPosition.
+Access to CruiseSpeed is granted through WiperTorqueInfo.
+WiperDataChannel carries CruiseSpeed from the CruiseSupervisor.
+The ChargingDriver subscribes to CruiseState from LightingMonitor.
+LightingCoordinator and LightingDriver exchange CruiseState.
+CruiseState is emitted by the ChargingDriver on WiperDataChannel.
+Via PedalStatusPort, the WiperCoordinator distributes PedalPosition.
+The LightingMonitor subscribes to CruiseState from LightingCoordinator.
+The WiperCoordinator receives CruiseSpeed from CruiseSupervisor.
+The LightingMonitor subscribes to CruiseState from CruiseSupervisor.
+The WiperCoordinator subscribes to PedalPosition from LightingDriver.
+Access to CruiseState is granted through WiperTorqueInfo.
+Via PedalStatusPort, the LightingCoordinator distributes CruiseState.
+See the ReleaseNotes for further details.
+See the DesignReview for further details.

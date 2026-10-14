@@ -1,0 +1,44 @@
+DOCUMENT: CORP-02-B
+TITLE: Synthetic Body Control Architecture
+REVISION: B
+SECTION: Overview
+This synthetic high-level design describes the body control software architecture.
+It defines 7 software components, 3 interfaces and 6 signals.
+
+SECTION: Component Catalogue
+- NetworkDriver: coordinates requests from other software components.
+- WindowController: supervises start-up and shutdown sequences.
+- BrakeModule: arbitrates access to shared vehicle resources.
+- WindowHandler: supervises start-up and shutdown sequences.
+- AirbagDriver: arbitrates access to shared vehicle resources.
+- LightingCoordinator: supervises start-up and shutdown sequences.
+- BrakeMonitor: supervises start-up and shutdown sequences.
+
+SECTION: Signals
+The WindowController publishes the GearStatus signal via the ParkingDataInput port and the WindowHandler consumes GearStatus.
+The LightingCoordinator publishes the MirrorState signal via the AmbientFeedInput port and the BrakeModule consumes MirrorState.
+The WindowController publishes the AmbientState signal via the ParkingDataInput port and the AirbagDriver consumes AmbientState.
+The WindowController publishes the SteeringTemperature signal via the ParkingDataInput port and the BrakeModule consumes SteeringTemperature.
+The BrakeModule publishes the DoorAngle signal via the AmbientFeedInput port and the WindowHandler consumes DoorAngle.
+The BrakeMonitor publishes the WindowSpeed signal via the EngineDataChannel port and the LightingCoordinator consumes WindowSpeed.
+
+SECTION: Interfaces
+The AirbagDriver provides the DiagSpeedData interface to the LightingCoordinator component for WindowSpeed.
+| AirbagDriver | DiagSpeedData | LightingCoordinator | WindowSpeed |
+The NetworkDriver provides the NetworkModeService interface to the WindowController component for DoorAngle.
+| NetworkDriver | NetworkModeService | WindowController | DoorAngle |
+The NetworkDriver provides the WindowStateInterface interface to the WindowController component for WindowSpeed.
+| NetworkDriver | WindowStateInterface | WindowController | WindowSpeed |
+
+SECTION: Dependencies
+The BrakeModule component depends on NetworkDriver for GearStatus.
+The AirbagDriver component depends on LightingCoordinator for SteeringTemperature.
+The WindowHandler component depends on AirbagDriver for GearStatus.
+The NetworkDriver component depends on WindowHandler for GearStatus.
+The BrakeMonitor component depends on WindowController for DoorAngle.
+
+SECTION: Test Considerations
+Each interface requires one positive and one negative integration test.
+
+SECTION: Revision History
+Revision B: synthetic release for evaluation.

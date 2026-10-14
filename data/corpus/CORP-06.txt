@@ -1,0 +1,42 @@
+DOCUMENT: CORP-06
+TITLE: Synthetic Charging Architecture
+REVISION: A
+SECTION: Overview
+This synthetic high-level design describes the charging software architecture.
+It defines 5 software components, 3 interfaces and 5 signals.
+
+SECTION: Component Catalogue
+- ClimateManager: converts raw measurements into engineering values.
+- ClimateCoordinator: reports diagnostic events to the diagnostic manager.
+- DiagService: arbitrates access to shared vehicle resources.
+- BatteryModule: reports diagnostic events to the diagnostic manager.
+- DoorModule: coordinates requests from other software components.
+
+SECTION: Signals
+The ClimateManager publishes the EngineLevel signal via the WiperDataInput port and the ClimateCoordinator consumes EngineLevel.
+The DiagService publishes the BatteryRequest signal via the WiperDataInput port and the BatteryModule consumes BatteryRequest.
+The DiagService publishes the WheelStatus signal via the WindowDataInput port and the ClimateCoordinator consumes WheelStatus.
+The DoorModule publishes the DoorHealth signal via the GearStatusChannel port and the ClimateCoordinator consumes DoorHealth.
+The DiagService publishes the ChargeCommand signal via the WiperDataInput port and the DoorModule consumes ChargeCommand.
+
+SECTION: Interfaces
+The ClimateManager provides the GatewaySpeedInfo interface to the ClimateCoordinator component for BatteryRequest.
+| ClimateManager | GatewaySpeedInfo | ClimateCoordinator | BatteryRequest |
+The DiagService provides the MirrorTorqueService interface to the BatteryModule component for BatteryRequest.
+| DiagService | MirrorTorqueService | BatteryModule | BatteryRequest |
+The ClimateCoordinator provides the SeatTorqueInterface interface to the BatteryModule component for ChargeCommand.
+| ClimateCoordinator | SeatTorqueInterface | BatteryModule | ChargeCommand |
+
+SECTION: Dependencies
+The BatteryModule component depends on DiagService for EngineLevel.
+The DoorModule component depends on ClimateCoordinator for BatteryRequest.
+The ClimateCoordinator component depends on ClimateManager for EngineLevel.
+The ClimateCoordinator component depends on DiagService for DoorHealth.
+The BatteryModule component depends on WindowProxy for DoorHealth.
+The BatteryModule consumes SeatDiagnostics, which no component is documented to publish.
+
+SECTION: Test Considerations
+Each interface requires one positive and one negative integration test.
+
+SECTION: Revision History
+Revision A: synthetic release for evaluation.

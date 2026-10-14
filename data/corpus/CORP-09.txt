@@ -1,0 +1,44 @@
+DOCUMENT: CORP-09
+TITLE: Synthetic Diagnostics Architecture
+REVISION: A
+SECTION: Overview
+This synthetic high-level design describes the diagnostics software architecture.
+It defines 5 software components, 3 interfaces and 7 signals.
+
+SECTION: Component Catalogue
+- WindowModule: arbitrates access to shared vehicle resources.
+- NetworkHandler: supervises start-up and shutdown sequences.
+- WiperManager: arbitrates access to shared vehicle resources.
+- MirrorDriver: reports diagnostic events to the diagnostic manager.
+- BodyService: arbitrates access to shared vehicle resources.
+
+SECTION: Signals
+The MirrorDriver publishes the MirrorCurrent signal via the DoorFeedChannel port and the NetworkHandler consumes MirrorCurrent.
+The NetworkHandler publishes the AmbientVoltage signal via the DoorFeedChannel port and the WindowModule consumes AmbientVoltage.
+The NetworkHandler publishes the CabinTorque signal via the ParkingStatusPort port and the WindowModule consumes CabinTorque.
+The NetworkHandler publishes the DoorCommand signal via the EngineDataOutput port and the MirrorDriver consumes DoorCommand.
+The MirrorDriver publishes the SeatHealth signal via the ParkingStatusPort port and the WiperManager consumes SeatHealth.
+The BodyService publishes the BrakeTorque signal via the EngineDataOutput port and the NetworkHandler consumes BrakeTorque.
+The MirrorDriver publishes the GearLevel signal via the ParkingStatusPort port and the NetworkHandler consumes GearLevel.
+
+SECTION: Interfaces
+The WindowModule provides the LightingTorqueInterface interface to the WiperManager component for MirrorCurrent.
+| WindowModule | LightingTorqueInterface | WiperManager | MirrorCurrent |
+The BodyService provides the SeatStateService interface to the MirrorDriver component for AmbientVoltage.
+| BodyService | SeatStateService | MirrorDriver | AmbientVoltage |
+The NetworkHandler provides the SensorStateInterface interface to the MirrorDriver component for MirrorCurrent.
+| NetworkHandler | SensorStateInterface | MirrorDriver | MirrorCurrent |
+
+SECTION: Dependencies
+The NetworkHandler component depends on BodyService for DoorCommand.
+The MirrorDriver component depends on WiperManager for DoorCommand.
+The MirrorDriver component depends on NetworkHandler for SeatHealth.
+The WindowModule component depends on WiperManager for AmbientVoltage.
+The WindowModule component depends on ParkingProxy for AmbientVoltage.
+The NetworkHandler consumes EngineDiagnostics, which no component is documented to publish.
+
+SECTION: Test Considerations
+Each interface requires one positive and one negative integration test.
+
+SECTION: Revision History
+Revision A: synthetic release for evaluation.

@@ -1,0 +1,20 @@
+DOCUMENT: SYN-TEST-02
+TITLE: Synthetic Architecture SYN-TEST-02
+REVISION: A
+SECTION: Overview
+AmbientTorque is emitted by the ParkingDriver on WiperCmdPort.
+The WiperSupervisor consumes PedalRequest through the DiagStateInfo interface.
+The ChargingCoordinator subscribes to PedalRequest from SeatCoordinator.
+AmbientTorque is emitted by the ChargingCoordinator on AmbientStatusLine.
+The WiperSupervisor offers LightingTorqueContract to SeatCoordinator.
+The ChargingCoordinator provides the ChargingModeService interface to the DiagMonitor component.
+The ParkingDriver subscribes to AmbientTorque from WiperSupervisor.
+The DiagMonitor consumes PedalLevel through the LightingTorqueContract interface.
+The ParkingDriver publishes ChargePosition through WiperCmdPort.
+The WiperSupervisor offers ChargingModeService to SeatCoordinator.
+The WiperSupervisor offers ChargingModeService to ChargingCoordinator.
+The SeatCoordinator subscribes to PedalRequest from WiperSupervisor.
+The SeatCoordinator forwards selected signals to the ParkingDriver component.
+CruisePosition is emitted by the WiperSupervisor on WiperCmdPort.
+See the TestPlan for further details.
+See the ReleaseNotes for further details.

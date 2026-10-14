@@ -1,0 +1,43 @@
+DOCUMENT: CORP-03-B
+TITLE: Synthetic Powertrain Architecture
+REVISION: B
+SECTION: Overview
+This synthetic high-level design describes the powertrain software architecture.
+It defines 7 software components, 3 interfaces and 6 signals.
+
+SECTION: Component Catalogue
+- BatteryManager: reports diagnostic events to the diagnostic manager.
+- SensorDriver: reports diagnostic events to the diagnostic manager.
+- LightingMonitor: coordinates requests from other software components.
+- EngineHandler: coordinates requests from other software components.
+- NetworkModule: supervises start-up and shutdown sequences.
+- NetworkHandler: reports diagnostic events to the diagnostic manager.
+- BatteryService: supervises start-up and shutdown sequences.
+
+SECTION: Signals
+The LightingMonitor publishes the DoorAngle signal via the MirrorFeedInput port and the BatteryManager consumes DoorAngle.
+The BatteryManager publishes the WiperStatus signal via the MirrorFeedInput port and the SensorDriver consumes WiperStatus.
+The LightingMonitor publishes the MirrorPosition signal via the WindowDataOutput port and the NetworkHandler consumes MirrorPosition.
+The NetworkModule publishes the VehicleAngle signal via the MirrorFeedInput port and the EngineHandler consumes VehicleAngle.
+The LightingMonitor publishes the WheelSpeed signal via the MirrorFeedInput port and the EngineHandler consumes WheelSpeed.
+The EngineHandler publishes the PedalVoltage signal via the MirrorFeedInput port and the BatteryManager consumes PedalVoltage.
+
+SECTION: Interfaces
+The BatteryManager provides the AirbagStateInfo interface to the NetworkHandler component for MirrorPosition.
+| BatteryManager | AirbagStateInfo | NetworkHandler | MirrorPosition |
+The EngineHandler provides the BatteryModeService interface to the NetworkModule component for WiperStatus.
+| EngineHandler | BatteryModeService | NetworkModule | WiperStatus |
+The NetworkModule provides the WiperStateData interface to the NetworkHandler component for WiperStatus.
+| NetworkModule | WiperStateData | NetworkHandler | WiperStatus |
+
+SECTION: Dependencies
+The BatteryService component depends on NetworkHandler for MirrorPosition.
+The NetworkModule component depends on BatteryService for WheelSpeed.
+The LightingMonitor component depends on BatteryService for MirrorPosition.
+The NetworkModule component depends on BatteryService for MirrorPosition.
+
+SECTION: Test Considerations
+Each interface requires one positive and one negative integration test.
+
+SECTION: Revision History
+Revision B: synthetic release for evaluation.

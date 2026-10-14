@@ -1,0 +1,22 @@
+DOCUMENT: SYN-TEST-01
+TITLE: Synthetic Architecture SYN-TEST-01
+REVISION: A
+SECTION: Overview
+The DiagMonitor publishes the AmbientSpeed signal via the AmbientDataLine port.
+Via AmbientCmdPort, the ChargingManager distributes ChargeState.
+The DiagController publishes CruiseTorque.
+The WiperController exposes CruiseStateContract for AmbientSpeed exchange.
+The ChargingManager publishes the ChargeState signal via the CruiseDataLink port.
+The DiagManager subscribes to AmbientSpeed from ChargingManager.
+AmbientDataLine carries SeatTorque from the DiagManager.
+The DiagController uses LightingSpeedInterface.
+Access to ChargeState is granted through CruiseStateContract.
+The ChargingManager offers CruiseStateContract to DiagMonitor.
+Via AmbientCmdPort, the DiagMonitor distributes ChargeState.
+The ChargingManager consumes CruiseTorque through the CruiseStateContract interface.
+The WiperController component depends on DiagMonitor for AmbientSpeed.
+The WiperController subscribes to ChargeState from DiagManager.
+The DiagManager subscribes to SeatTorque from DiagMonitor.
+The ChargingManager exposes CruiseStateContract for CruiseTorque exchange.
+See the SafetyCase for further details.
+See the TestPlan for further details.

@@ -1,0 +1,44 @@
+DOCUMENT: CORP-04
+TITLE: Synthetic Gateway Architecture
+REVISION: A
+SECTION: Overview
+This synthetic high-level design describes the gateway software architecture.
+It defines 5 software components, 3 interfaces and 7 signals.
+
+SECTION: Component Catalogue
+- ParkingMonitor: supervises start-up and shutdown sequences.
+- AirbagDriver: coordinates requests from other software components.
+- WindowCoordinator: supervises start-up and shutdown sequences.
+- ChargingDriver: converts raw measurements into engineering values.
+- ClimateHandler: coordinates requests from other software components.
+
+SECTION: Signals
+The WindowCoordinator publishes the WiperVoltage signal via the CabinFeedChannel port and the ChargingDriver consumes WiperVoltage.
+The AirbagDriver publishes the PedalCommand signal via the SteeringDataOutput port and the WindowCoordinator consumes PedalCommand.
+The WindowCoordinator publishes the MirrorLevel signal via the SteeringDataOutput port and the ParkingMonitor consumes MirrorLevel.
+The WindowCoordinator publishes the EngineLevel signal via the SteeringDataOutput port and the ParkingMonitor consumes EngineLevel.
+The ClimateHandler publishes the WindowTorque signal via the CabinFeedChannel port and the AirbagDriver consumes WindowTorque.
+The ChargingDriver publishes the BatteryVoltage signal via the CabinFeedChannel port and the WindowCoordinator consumes BatteryVoltage.
+The ClimateHandler publishes the DoorTemperature signal via the AmbientStatusChannel port and the AirbagDriver consumes DoorTemperature.
+
+SECTION: Interfaces
+The ChargingDriver provides the BatterySpeedInfo interface to the ClimateHandler component for PedalCommand.
+| ChargingDriver | BatterySpeedInfo | ClimateHandler | PedalCommand |
+The ParkingMonitor provides the EngineTorqueInterface interface to the ClimateHandler component for BatteryVoltage.
+| ParkingMonitor | EngineTorqueInterface | ClimateHandler | BatteryVoltage |
+The ParkingMonitor provides the GatewayTorqueInterface interface to the ClimateHandler component for WiperVoltage.
+| ParkingMonitor | GatewayTorqueInterface | ClimateHandler | WiperVoltage |
+
+SECTION: Dependencies
+The AirbagDriver component depends on ParkingMonitor for EngineLevel.
+The WindowCoordinator component depends on ParkingMonitor for WiperVoltage.
+The AirbagDriver component depends on WindowCoordinator for BatteryVoltage.
+The WindowCoordinator component depends on ParkingMonitor for EngineLevel.
+The ChargingDriver component depends on DoorProxy for BatteryVoltage.
+The ClimateHandler consumes BrakeDiagnostics, which no component is documented to publish.
+
+SECTION: Test Considerations
+Each interface requires one positive and one negative integration test.
+
+SECTION: Revision History
+Revision A: synthetic release for evaluation.

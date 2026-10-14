@@ -1,0 +1,8 @@
+question,type,gold,top_score,retrieved_docs
+Which software component is the source of the charge temperature signal?,paraphrase,"[[""CORP-08"", ""SteeringService""], [""CORP-10"", ""NetworkService""]]",0.352,CORP-07 CORP-06 CORP-06
+Which software component is the source of the mirror state signal?,paraphrase,"[[""CORP-02"", ""LightingCoordinator""], [""CORP-02-B"", ""LightingCoordinator""]]",0.4071,CORP-09 CORP-03 CORP-03-B
+Where does the cabin torque signal originate?,paraphrase,"[[""CORP-09"", ""NetworkHandler""]]",0.3968,CORP-01 CORP-01-B CORP-02-B
+Who offers the body state info interface to other components?,paraphrase,"[[""CORP-05"", ""DiagMonitor""]]",0.4445,CORP-02 CORP-02-B CORP-02
+What does the seat service rely on for pedal current?,paraphrase,"[[""CORP-01-B"", ""LightingController""]]",0.3389,CORP-01-B CORP-03-B CORP-01
+Who offers the window state interface interface to other components?,paraphrase,"[[""CORP-02"", ""NetworkDriver""], [""CORP-02-B"", ""NetworkDriver""]]",0.3783,CORP-09 CORP-07 CORP-10
+Which software component is the source of the engine status signal?,paraphrase,"[[""CORP-01"", ""BrakeService""]]",0.4288,CORP-03 CORP-03-B CORP-10

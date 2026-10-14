@@ -1,0 +1,132 @@
+{
+  "mode": "tfidf",
+  "available": true,
+  "n_answerable": 28,
+  "n_unanswerable": 8,
+  "by_type": {
+    "keyword": {
+      "n": 14,
+      "doc_hit@1": 1.0,
+      "term_hit@1": 1.0,
+      "doc_hit@3": 1.0,
+      "term_hit@3": 1.0,
+      "doc_hit@5": 1.0,
+      "term_hit@5": 1.0,
+      "term_mrr": 1.0
+    },
+    "paraphrase": {
+      "n": 14,
+      "doc_hit@1": 0.214,
+      "term_hit@1": 0.214,
+      "doc_hit@3": 0.357,
+      "term_hit@3": 0.357,
+      "doc_hit@5": 0.357,
+      "term_hit@5": 0.357,
+      "term_mrr": 0.262
+    },
+    "overall": {
+      "n": 28,
+      "doc_hit@1": 0.607,
+      "term_hit@1": 0.607,
+      "doc_hit@3": 0.679,
+      "term_hit@3": 0.679,
+      "doc_hit@5": 0.679,
+      "term_hit@5": 0.679,
+      "term_mrr": 0.631
+    }
+  },
+  "test_split_only": {
+    "n": 16,
+    "term_hit@3": 0.688,
+    "term_mrr": 0.688
+  },
+  "abstention": {
+    "score_threshold_only": {
+      "threshold": 0.2428,
+      "dev_balanced_accuracy": 0.875,
+      "test_balanced_accuracy": 0.594,
+      "test_answer_rate": 0.188,
+      "test_abstain_rate": 1.0
+    },
+    "identifier_grounding_plus_threshold": {
+      "threshold": 0.2428,
+      "dev_balanced_accuracy": 0.875,
+      "test_balanced_accuracy": 0.594,
+      "test_answer_rate": 0.188,
+      "test_abstain_rate": 1.0
+    },
+    "app_default_threshold": 0.0,
+    "app_default_abstain_rate_on_unanswerable": 0.0
+  },
+  "answer_quality": {
+    "answered_questions": 12,
+    "answer_contains_gold_term_rate": 0.321,
+    "citation_validity_rate": 1.0
+  },
+  "failures_at_3": [
+    {
+      "question": "Who offers the diag speed data interface to other components?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-02\", \"AirbagDriver\"], [\"CORP-02-B\", \"AirbagDriver\"]]",
+      "top_score": 0.1454,
+      "retrieved_docs": "CORP-07 CORP-04 CORP-03-B"
+    },
+    {
+      "question": "Which software component is the source of the charge temperature signal?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-08\", \"SteeringService\"], [\"CORP-10\", \"NetworkService\"]]",
+      "top_score": 0.1846,
+      "retrieved_docs": "CORP-07 CORP-04 CORP-03-B"
+    },
+    {
+      "question": "Which software component is the source of the mirror state signal?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-02\", \"LightingCoordinator\"], [\"CORP-02-B\", \"LightingCoordinator\"]]",
+      "top_score": 0.1846,
+      "retrieved_docs": "CORP-07 CORP-04 CORP-03-B"
+    },
+    {
+      "question": "Where does the door health signal originate?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-06\", \"DoorModule\"]]",
+      "top_score": 0.2411,
+      "retrieved_docs": "CORP-05 CORP-05 CORP-07"
+    },
+    {
+      "question": "Who offers the body state info interface to other components?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-05\", \"DiagMonitor\"]]",
+      "top_score": 0.3004,
+      "retrieved_docs": "CORP-02-B CORP-02 CORP-02"
+    },
+    {
+      "question": "What produces the wheel angle signal?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-02\", \"WindowController\"]]",
+      "top_score": 0.2428,
+      "retrieved_docs": "CORP-03-B CORP-01 CORP-09"
+    },
+    {
+      "question": "What does the door module rely on for battery request?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-06\", \"ClimateCoordinator\"]]",
+      "top_score": 0.0,
+      "retrieved_docs": "CORP-01-B CORP-01-B CORP-01-B"
+    },
+    {
+      "question": "What produces the charge current signal?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-08\", \"WiperMonitor\"]]",
+      "top_score": 0.2428,
+      "retrieved_docs": "CORP-03-B CORP-01 CORP-09"
+    },
+    {
+      "question": "Which software component is the source of the engine status signal?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-01\", \"BrakeService\"]]",
+      "top_score": 0.1846,
+      "retrieved_docs": "CORP-07 CORP-04 CORP-03-B"
+    }
+  ],
+  "note": "Synthetic, template-generated corpus. Scores are relative, not real-world accuracy."
+}

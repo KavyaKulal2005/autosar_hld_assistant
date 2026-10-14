@@ -1,0 +1,16 @@
+{
+  "documents": 13,
+  "gold_relations_found": 258,
+  "gold_relations_missed": 0,
+  "relation_recall": 1.0,
+  "extra_relations_not_in_manifest": 17,
+  "extra_explained_by_injected_issues": 17,
+  "consistency_findings": {
+    "true_positive": 17,
+    "false_positive": 0,
+    "false_negative": 0,
+    "precision": 1.0,
+    "recall": 1.0
+  },
+  "note": "Synthetic, template-generated data. Rules match the generator's phrasing; real HLDs will need broader patterns."
+}

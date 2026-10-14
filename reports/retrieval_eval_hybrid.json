@@ -1,0 +1,120 @@
+{
+  "mode": "hybrid",
+  "available": true,
+  "n_answerable": 28,
+  "n_unanswerable": 8,
+  "by_type": {
+    "keyword": {
+      "n": 14,
+      "doc_hit@1": 0.857,
+      "term_hit@1": 0.857,
+      "doc_hit@3": 1.0,
+      "term_hit@3": 1.0,
+      "doc_hit@5": 1.0,
+      "term_hit@5": 1.0,
+      "term_mrr": 0.929
+    },
+    "paraphrase": {
+      "n": 14,
+      "doc_hit@1": 0.214,
+      "term_hit@1": 0.143,
+      "doc_hit@3": 0.571,
+      "term_hit@3": 0.5,
+      "doc_hit@5": 0.857,
+      "term_hit@5": 0.714,
+      "term_mrr": 0.344
+    },
+    "overall": {
+      "n": 28,
+      "doc_hit@1": 0.536,
+      "term_hit@1": 0.5,
+      "doc_hit@3": 0.786,
+      "term_hit@3": 0.75,
+      "doc_hit@5": 0.929,
+      "term_hit@5": 0.857,
+      "term_mrr": 0.636
+    }
+  },
+  "test_split_only": {
+    "n": 16,
+    "term_hit@3": 0.75,
+    "term_mrr": 0.643
+  },
+  "abstention": {
+    "score_threshold_only": {
+      "threshold": 0.3578,
+      "dev_balanced_accuracy": 0.917,
+      "test_balanced_accuracy": 0.688,
+      "test_answer_rate": 0.375,
+      "test_abstain_rate": 1.0
+    },
+    "identifier_grounding_plus_threshold": {
+      "threshold": 0.3028,
+      "dev_balanced_accuracy": 1.0,
+      "test_balanced_accuracy": 0.75,
+      "test_answer_rate": 1.0,
+      "test_abstain_rate": 0.5
+    },
+    "app_default_threshold": 0.01,
+    "app_default_abstain_rate_on_unanswerable": 0.0
+  },
+  "answer_quality": {
+    "answered_questions": 28,
+    "answer_contains_gold_term_rate": 0.679,
+    "citation_validity_rate": 1.0
+  },
+  "failures_at_3": [
+    {
+      "question": "Which software component is the source of the charge temperature signal?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-08\", \"SteeringService\"], [\"CORP-10\", \"NetworkService\"]]",
+      "top_score": 0.352,
+      "retrieved_docs": "CORP-07 CORP-06 CORP-06"
+    },
+    {
+      "question": "Which software component is the source of the mirror state signal?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-02\", \"LightingCoordinator\"], [\"CORP-02-B\", \"LightingCoordinator\"]]",
+      "top_score": 0.4071,
+      "retrieved_docs": "CORP-09 CORP-03 CORP-03-B"
+    },
+    {
+      "question": "Where does the cabin torque signal originate?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-09\", \"NetworkHandler\"]]",
+      "top_score": 0.3968,
+      "retrieved_docs": "CORP-01 CORP-01-B CORP-02-B"
+    },
+    {
+      "question": "Who offers the body state info interface to other components?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-05\", \"DiagMonitor\"]]",
+      "top_score": 0.4445,
+      "retrieved_docs": "CORP-02 CORP-02-B CORP-02"
+    },
+    {
+      "question": "What does the seat service rely on for pedal current?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-01-B\", \"LightingController\"]]",
+      "top_score": 0.3389,
+      "retrieved_docs": "CORP-01-B CORP-03-B CORP-01"
+    },
+    {
+      "question": "Who offers the window state interface interface to other components?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-02\", \"NetworkDriver\"], [\"CORP-02-B\", \"NetworkDriver\"]]",
+      "top_score": 0.3783,
+      "retrieved_docs": "CORP-09 CORP-07 CORP-10"
+    },
+    {
+      "question": "Which software component is the source of the engine status signal?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-01\", \"BrakeService\"]]",
+      "top_score": 0.4288,
+      "retrieved_docs": "CORP-03 CORP-03-B CORP-10"
+    }
+  ],
+  "note": "Synthetic, template-generated corpus. Scores are relative, not real-world accuracy.",
+  "alpha_tfidf_weight": 0.4,
+  "alpha_dev_term_mrr": 0.628
+}

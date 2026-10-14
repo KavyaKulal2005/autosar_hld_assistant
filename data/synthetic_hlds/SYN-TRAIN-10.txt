@@ -1,0 +1,20 @@
+DOCUMENT: SYN-TRAIN-10
+TITLE: Synthetic Architecture SYN-TRAIN-10
+REVISION: A
+SECTION: Overview
+The SensorManager provides the ClimateStateApi interface to the EngineMonitor component.
+The SteeringModule consumes GearTorque.
+The EngineHandler consumes BrakeVoltage.
+The EngineMonitor uses SensorModeInfo.
+The EngineHandler component depends on SteeringModule for GearTorque.
+The EngineMonitor component depends on EngineHandler for DoorTemperature.
+The EngineMonitor consumes DoorTemperature through the ClimateStateApi interface.
+The EngineMonitor publishes GearTorque.
+The SteeringModule publishes GearTorque through EngineFeedOutput.
+The EngineHandler publishes the WheelHealth signal via the EngineFeedOutput port.
+The EngineHandler uses SensorModeInfo.
+BatteryDataLine carries CabinHealth from the EngineHandler.
+The EngineHandler sends CabinHealth via BatteryDataLine.
+The SteeringModule publishes the WheelHealth signal via the BatteryDataLine port.
+See the SystemOverview for further details.
+See the DesignReview for further details.

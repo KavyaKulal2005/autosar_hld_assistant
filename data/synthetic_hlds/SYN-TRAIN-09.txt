@@ -1,0 +1,25 @@
+DOCUMENT: SYN-TRAIN-09
+TITLE: Synthetic Architecture SYN-TRAIN-09
+REVISION: A
+SECTION: Overview
+The GatewayHandler publishes BrakeHealth through BrakeStatusOutput.
+The EngineManager consumes BrakeStatus.
+The GatewayHandler publishes the BrakeStatus signal via the BrakeDataOutput port.
+The ClimateService publishes the BrakeStatus signal via the BrakeStatusOutput port.
+The BrakeService publishes BrakeTemperature.
+The BrakeService publishes GearAngle.
+The GatewayHandler publishes the BrakeTemperature signal via the VehicleCmdInput port.
+The GatewayHandler publishes BrakeStatus through BrakeDataOutput.
+The ClimateService sends BrakeStatus via BrakeDataOutput.
+The EngineManager sends GearAngle via BrakeDataOutput.
+The ClimateService receives WheelTemperature from BrakeService.
+The BrakeService exposes SensorSpeedInterface for BrakeTemperature exchange.
+The GatewayHandler consumes BrakeTemperature.
+The GatewayHandler forwards selected signals to the BrakeService component.
+The GatewayHandler forwards selected signals to the EngineManager component.
+The BrakeService component depends on GatewayHandler for GearAngle.
+The BrakeService exposes ClimateTorqueData for GearAngle exchange.
+The GatewayHandler forwards selected signals to the EngineManager component.
+The BrakeService publishes the BrakeHealth signal via the BrakeStatusOutput port.
+See the SafetyCase for further details.
+See the TestPlan for further details.

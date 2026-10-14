@@ -1,0 +1,41 @@
+DOCUMENT: CORP-07
+TITLE: Synthetic Parking Architecture
+REVISION: A
+SECTION: Overview
+This synthetic high-level design describes the parking software architecture.
+It defines 5 software components, 3 interfaces and 5 signals.
+
+SECTION: Component Catalogue
+- GatewayController: arbitrates access to shared vehicle resources.
+- ChargingModule: coordinates requests from other software components.
+- BodyService: converts raw measurements into engineering values.
+- AirbagHandler: coordinates requests from other software components.
+- SensorService: monitors the health of connected sensors.
+
+SECTION: Signals
+The SensorService publishes the WindowCurrent signal via the EngineStatusOutput port and the AirbagHandler consumes WindowCurrent.
+The ChargingModule publishes the ParkingVoltage signal via the BrakeStatusOutput port and the AirbagHandler consumes ParkingVoltage.
+The BodyService publishes the BrakeAngle signal via the EngineStatusOutput port and the SensorService consumes BrakeAngle.
+The BodyService publishes the ParkingCommand signal via the EngineDataChannel port and the SensorService consumes ParkingCommand.
+The ChargingModule publishes the WheelTemperature signal via the EngineStatusOutput port and the BodyService consumes WheelTemperature.
+
+SECTION: Interfaces
+The SensorService provides the MirrorStateInfo interface to the GatewayController component for BrakeAngle.
+| SensorService | MirrorStateInfo | GatewayController | BrakeAngle |
+The SensorService provides the WindowModeInfo interface to the ChargingModule component for WindowCurrent.
+| SensorService | WindowModeInfo | ChargingModule | WindowCurrent |
+The AirbagHandler provides the WiperTorqueData interface to the GatewayController component for ParkingVoltage.
+| AirbagHandler | WiperTorqueData | GatewayController | ParkingVoltage |
+
+SECTION: Dependencies
+The SensorService component depends on AirbagHandler for BrakeAngle.
+The GatewayController component depends on SensorService for WindowCurrent.
+The GatewayController component depends on ChargingModule for ParkingVoltage.
+The SensorService component depends on AirbagHandler for WheelTemperature.
+The SensorService component depends on GatewayController for ParkingVoltage.
+
+SECTION: Test Considerations
+Each interface requires one positive and one negative integration test.
+
+SECTION: Revision History
+Revision A: synthetic release for evaluation.

@@ -1,0 +1,46 @@
+DOCUMENT: CORP-10
+TITLE: Synthetic Chassis Architecture
+REVISION: A
+SECTION: Overview
+This synthetic high-level design describes the chassis software architecture.
+It defines 7 software components, 3 interfaces and 7 signals.
+
+SECTION: Component Catalogue
+- WiperHandler: arbitrates access to shared vehicle resources.
+- ChargingService: converts raw measurements into engineering values.
+- ClimateMonitor: supervises start-up and shutdown sequences.
+- SeatController: converts raw measurements into engineering values.
+- EngineService: supervises start-up and shutdown sequences.
+- BatteryModule: reports diagnostic events to the diagnostic manager.
+- NetworkService: arbitrates access to shared vehicle resources.
+
+SECTION: Signals
+The WiperHandler publishes the AmbientAngle signal via the VehicleDataChannel port and the EngineService consumes AmbientAngle.
+The BatteryModule publishes the AmbientSpeed signal via the MirrorDataInput port and the NetworkService consumes AmbientSpeed.
+The ClimateMonitor publishes the EnginePosition signal via the DoorFeedPort port and the ChargingService consumes EnginePosition.
+The ChargingService publishes the WindowVoltage signal via the MirrorDataInput port and the SeatController consumes WindowVoltage.
+The NetworkService publishes the ChargeTemperature signal via the DoorFeedPort port and the SeatController consumes ChargeTemperature.
+The BatteryModule publishes the ChargeVoltage signal via the MirrorDataInput port and the NetworkService consumes ChargeVoltage.
+The ClimateMonitor publishes the MirrorTemperature signal via the VehicleDataChannel port and the WiperHandler consumes MirrorTemperature.
+
+SECTION: Interfaces
+The SeatController provides the BodySpeedInterface interface to the ClimateMonitor component for AmbientAngle.
+| SeatController | BodySpeedInterface | ClimateMonitor | AmbientAngle |
+The ClimateMonitor provides the EngineStateService interface to the BatteryModule component for AmbientAngle.
+| ClimateMonitor | EngineStateService | BatteryModule | AmbientAngle |
+The BatteryModule provides the MirrorSpeedInterface interface to the WiperHandler component for AmbientAngle.
+| BatteryModule | MirrorSpeedInterface | WiperHandler | AmbientAngle |
+
+SECTION: Dependencies
+The SeatController component depends on EngineService for WindowVoltage.
+The WiperHandler component depends on SeatController for AmbientSpeed.
+The BatteryModule component depends on ClimateMonitor for AmbientAngle.
+The WiperHandler component depends on ClimateMonitor for EnginePosition.
+The NetworkService component depends on GatewayProxy for AmbientSpeed.
+The EngineService consumes PedalDiagnostics, which no component is documented to publish.
+
+SECTION: Test Considerations
+Each interface requires one positive and one negative integration test.
+
+SECTION: Revision History
+Revision A: synthetic release for evaluation.

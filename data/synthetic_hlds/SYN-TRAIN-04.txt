@@ -1,0 +1,24 @@
+DOCUMENT: SYN-TRAIN-04
+TITLE: Synthetic Architecture SYN-TRAIN-04
+REVISION: A
+SECTION: Overview
+The BodyDriver uses GatewayModeInterface.
+The EngineService uses GatewayModeInterface.
+The BrakeService consumes EngineAngle through the BatteryStateInfo interface.
+The SteeringService component depends on BrakeService for BrakeSpeed.
+BrakeDataLink carries EngineAngle from the BrakeMonitor.
+The EngineService publishes the WheelVoltage signal via the VehicleFeedChannel port.
+BrakeDataLink carries GearTorque from the ClimateHandler.
+The SteeringService forwards selected signals to the BodyDriver component.
+The BrakeMonitor exposes BodySpeedInterface for BrakeSpeed exchange.
+The BrakeMonitor component depends on SteeringService for GearTorque.
+The BodyDriver forwards selected signals to the EngineService component.
+The ClimateHandler forwards selected signals to the BrakeService component.
+The SteeringService forwards selected signals to the BodyDriver component.
+The SteeringService consumes VehicleCommand.
+The BrakeService consumes WheelVoltage through the GatewayModeInterface interface.
+The ClimateHandler exposes BatteryStateInfo for GearTorque exchange.
+BrakeFeedInput carries GearTorque from the EngineService.
+The ClimateHandler forwards selected signals to the SteeringService component.
+See the RevisionHistory for further details.
+See the BuildConfig for further details.

@@ -1,0 +1,25 @@
+DOCUMENT: SYN-TRAIN-03
+TITLE: Synthetic Architecture SYN-TRAIN-03
+REVISION: A
+SECTION: Overview
+The NetworkController consumes CabinSpeed.
+The NetworkController receives WheelSpeed from DoorMonitor.
+The NetworkModule publishes GearHealth through GearDataOutput.
+The DoorMonitor consumes GearHealth through the ClimateTorqueInfo interface.
+The ClimateModule provides the BodyTorqueApi interface to the DoorMonitor component.
+The ClimateModule forwards selected signals to the NetworkController component.
+The DoorMonitor forwards selected signals to the ClimateModule component.
+SteeringStatusLink carries GearHealth from the DoorMonitor.
+The NetworkModule publishes CabinSpeed through GearDataOutput.
+The NetworkModule consumes CabinSpeed.
+The DoorMonitor provides the ClimateTorqueData interface to the ClimateModule component.
+The NetworkModule publishes WheelSpeed through GearDataOutput.
+The NetworkController uses BodyTorqueApi.
+The DoorMonitor publishes GearHealth.
+The DoorMonitor exposes ClimateTorqueInfo for BrakeHealth exchange.
+The NetworkModule exposes ClimateTorqueData for BrakeHealth exchange.
+The DoorMonitor publishes WheelSpeed through SteeringStatusLink.
+The DoorMonitor sends WheelSpeed via GearDataOutput.
+GearDataOutput carries WheelSpeed from the DoorMonitor.
+See the RevisionHistory for further details.
+See the TestPlan for further details.

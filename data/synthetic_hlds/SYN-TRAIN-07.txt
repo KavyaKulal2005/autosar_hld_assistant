@@ -1,0 +1,22 @@
+DOCUMENT: SYN-TRAIN-07
+TITLE: Synthetic Architecture SYN-TRAIN-07
+REVISION: A
+SECTION: Overview
+The SteeringManager provides the SteeringModeApi interface to the SteeringModule component.
+The BrakeController uses SteeringTorqueApi.
+The SteeringManager publishes BatteryVoltage through EngineFeedLink.
+The SteeringModule exposes SteeringTorqueApi for DoorCommand exchange.
+The SteeringModule publishes BatteryVoltage.
+The ClimateHandler sends SteeringHealth via BatteryCmdChannel.
+The SteeringManager publishes EngineTorque through EngineFeedLink.
+The SteeringManager exposes SteeringTorqueApi for BatteryVoltage exchange.
+The BatteryMonitor consumes BatteryVoltage.
+The BrakeController provides the SteeringTorqueApi interface to the BatteryMonitor component.
+The SteeringModule publishes the BatteryStatus signal via the BatteryStatusInput port.
+The GatewayDriver provides the BatteryStateInfo interface to the SteeringManager component.
+The ClimateHandler publishes DoorCommand through BatteryCmdChannel.
+The ClimateHandler publishes the BatteryStatus signal via the EngineFeedLink port.
+The SteeringManager consumes SteeringTorque through the SteeringTorqueApi interface.
+The SteeringModule receives BatteryStatus from ClimateHandler.
+See the RevisionHistory for further details.
+See the BuildConfig for further details.

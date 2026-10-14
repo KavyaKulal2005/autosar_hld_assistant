@@ -1,0 +1,2008 @@
+{
+  "CORP-01": {
+    "labels": {
+      "SeatDriver": "component",
+      "LightingController": "component",
+      "ChargingDriver": "component",
+      "BrakeService": "component",
+      "ParkingMonitor": "component",
+      "EngineStatus": "signal",
+      "PedalCurrent": "signal",
+      "CruiseRequest": "signal",
+      "VehicleRequest": "signal",
+      "CabinLevel": "signal",
+      "WiperTemperature": "signal",
+      "AmbientPosition": "signal",
+      "CabinFeedChannel": "port",
+      "CabinFeedPort": "port",
+      "WheelStatusInput": "port",
+      "GatewaySpeedInfo": "interface",
+      "MirrorTorqueService": "interface",
+      "SensorSpeedService": "interface",
+      "BatteryProxy": "component",
+      "BrakeDiagnostics": "signal"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "BrakeService",
+        "signal": "EngineStatus",
+        "port": "WheelStatusInput"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatDriver",
+        "signal": "EngineStatus"
+      },
+      {
+        "type": "publishes",
+        "component": "ParkingMonitor",
+        "signal": "PedalCurrent",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "ChargingDriver",
+        "signal": "PedalCurrent"
+      },
+      {
+        "type": "publishes",
+        "component": "BrakeService",
+        "signal": "CruiseRequest",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatDriver",
+        "signal": "CruiseRequest"
+      },
+      {
+        "type": "publishes",
+        "component": "SeatDriver",
+        "signal": "VehicleRequest",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "ParkingMonitor",
+        "signal": "VehicleRequest"
+      },
+      {
+        "type": "publishes",
+        "component": "SeatDriver",
+        "signal": "CabinLevel",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "ParkingMonitor",
+        "signal": "CabinLevel"
+      },
+      {
+        "type": "publishes",
+        "component": "ParkingMonitor",
+        "signal": "WiperTemperature",
+        "port": "WheelStatusInput"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatDriver",
+        "signal": "WiperTemperature"
+      },
+      {
+        "type": "publishes",
+        "component": "ChargingDriver",
+        "signal": "AmbientPosition",
+        "port": "WheelStatusInput"
+      },
+      {
+        "type": "consumes",
+        "component": "LightingController",
+        "signal": "AmbientPosition"
+      },
+      {
+        "type": "provides",
+        "component": "BrakeService",
+        "interface": "GatewaySpeedInfo",
+        "consumer": "SeatDriver"
+      },
+      {
+        "type": "provides",
+        "component": "SeatDriver",
+        "interface": "MirrorTorqueService",
+        "consumer": "LightingController"
+      },
+      {
+        "type": "provides",
+        "component": "SeatDriver",
+        "interface": "SensorSpeedService",
+        "consumer": "LightingController"
+      },
+      {
+        "type": "depends_on",
+        "component": "ParkingMonitor",
+        "target": "LightingController",
+        "signal": "PedalCurrent"
+      },
+      {
+        "type": "depends_on",
+        "component": "BrakeService",
+        "target": "ChargingDriver",
+        "signal": "PedalCurrent"
+      },
+      {
+        "type": "depends_on",
+        "component": "ChargingDriver",
+        "target": "SeatDriver",
+        "signal": "VehicleRequest"
+      },
+      {
+        "type": "depends_on",
+        "component": "SeatDriver",
+        "target": "ParkingMonitor",
+        "signal": "WiperTemperature"
+      },
+      {
+        "type": "depends_on",
+        "component": "BrakeService",
+        "target": "ParkingMonitor",
+        "signal": "EngineStatus"
+      }
+    ],
+    "issues": [
+      {
+        "type": "undefined_component",
+        "item": "BatteryProxy"
+      },
+      {
+        "type": "orphan_signal",
+        "item": "BrakeDiagnostics"
+      }
+    ],
+    "revision_of": null,
+    "changes": []
+  },
+  "CORP-01-B": {
+    "labels": {
+      "SeatDriver": "component",
+      "LightingController": "component",
+      "ChargingDriver": "component",
+      "BrakeService": "component",
+      "SeatService": "component",
+      "WheelState": "signal",
+      "PedalCurrent": "signal",
+      "CruiseRequest": "signal",
+      "VehicleRequest": "signal",
+      "CabinLevel": "signal",
+      "WiperTemperature": "signal",
+      "AmbientPosition": "signal",
+      "CabinFeedChannel": "port",
+      "CabinFeedPort": "port",
+      "WheelStatusInput": "port",
+      "GatewaySpeedInfo": "interface",
+      "MirrorTorqueService": "interface",
+      "SensorSpeedService": "interface"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "BrakeService",
+        "signal": "WheelState",
+        "port": "WheelStatusInput"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatDriver",
+        "signal": "WheelState"
+      },
+      {
+        "type": "publishes",
+        "component": "SeatService",
+        "signal": "PedalCurrent",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "ChargingDriver",
+        "signal": "PedalCurrent"
+      },
+      {
+        "type": "publishes",
+        "component": "BrakeService",
+        "signal": "CruiseRequest",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatDriver",
+        "signal": "CruiseRequest"
+      },
+      {
+        "type": "publishes",
+        "component": "SeatDriver",
+        "signal": "VehicleRequest",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatService",
+        "signal": "VehicleRequest"
+      },
+      {
+        "type": "publishes",
+        "component": "SeatDriver",
+        "signal": "CabinLevel",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatService",
+        "signal": "CabinLevel"
+      },
+      {
+        "type": "publishes",
+        "component": "SeatService",
+        "signal": "WiperTemperature",
+        "port": "WheelStatusInput"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatDriver",
+        "signal": "WiperTemperature"
+      },
+      {
+        "type": "publishes",
+        "component": "ChargingDriver",
+        "signal": "AmbientPosition",
+        "port": "WheelStatusInput"
+      },
+      {
+        "type": "consumes",
+        "component": "LightingController",
+        "signal": "AmbientPosition"
+      },
+      {
+        "type": "provides",
+        "component": "BrakeService",
+        "interface": "GatewaySpeedInfo",
+        "consumer": "SeatDriver"
+      },
+      {
+        "type": "provides",
+        "component": "SeatDriver",
+        "interface": "MirrorTorqueService",
+        "consumer": "LightingController"
+      },
+      {
+        "type": "provides",
+        "component": "SeatDriver",
+        "interface": "SensorSpeedService",
+        "consumer": "LightingController"
+      },
+      {
+        "type": "depends_on",
+        "component": "SeatService",
+        "target": "LightingController",
+        "signal": "PedalCurrent"
+      },
+      {
+        "type": "depends_on",
+        "component": "BrakeService",
+        "target": "ChargingDriver",
+        "signal": "PedalCurrent"
+      },
+      {
+        "type": "depends_on",
+        "component": "ChargingDriver",
+        "target": "SeatDriver",
+        "signal": "VehicleRequest"
+      },
+      {
+        "type": "depends_on",
+        "component": "SeatDriver",
+        "target": "SeatService",
+        "signal": "WiperTemperature"
+      },
+      {
+        "type": "depends_on",
+        "component": "BrakeService",
+        "target": "SeatService",
+        "signal": "WheelState"
+      }
+    ],
+    "issues": [],
+    "revision_of": "CORP-01",
+    "changes": [
+      {
+        "type": "removed",
+        "entity_type": "component",
+        "entity": "BatteryProxy"
+      },
+      {
+        "type": "removed",
+        "entity_type": "component",
+        "entity": "ParkingMonitor"
+      },
+      {
+        "type": "added",
+        "entity_type": "component",
+        "entity": "SeatService"
+      },
+      {
+        "type": "removed",
+        "entity_type": "signal",
+        "entity": "BrakeDiagnostics"
+      },
+      {
+        "type": "removed",
+        "entity_type": "signal",
+        "entity": "EngineStatus"
+      },
+      {
+        "type": "added",
+        "entity_type": "signal",
+        "entity": "WheelState"
+      }
+    ]
+  },
+  "CORP-02": {
+    "labels": {
+      "NetworkDriver": "component",
+      "WindowController": "component",
+      "BrakeModule": "component",
+      "WindowHandler": "component",
+      "AirbagDriver": "component",
+      "LightingCoordinator": "component",
+      "ClimateDriver": "component",
+      "WheelAngle": "signal",
+      "MirrorState": "signal",
+      "AmbientState": "signal",
+      "SteeringTemperature": "signal",
+      "DoorAngle": "signal",
+      "WindowSpeed": "signal",
+      "AmbientFeedInput": "port",
+      "EngineDataChannel": "port",
+      "ParkingDataInput": "port",
+      "DiagSpeedData": "interface",
+      "NetworkModeService": "interface",
+      "WindowStateInterface": "interface",
+      "ChargingProxy": "component",
+      "WindowDiagnostics": "signal"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "WindowController",
+        "signal": "WheelAngle",
+        "port": "ParkingDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "WindowHandler",
+        "signal": "WheelAngle"
+      },
+      {
+        "type": "publishes",
+        "component": "LightingCoordinator",
+        "signal": "MirrorState",
+        "port": "AmbientFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "BrakeModule",
+        "signal": "MirrorState"
+      },
+      {
+        "type": "publishes",
+        "component": "WindowController",
+        "signal": "AmbientState",
+        "port": "ParkingDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "AirbagDriver",
+        "signal": "AmbientState"
+      },
+      {
+        "type": "publishes",
+        "component": "WindowController",
+        "signal": "SteeringTemperature",
+        "port": "ParkingDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "BrakeModule",
+        "signal": "SteeringTemperature"
+      },
+      {
+        "type": "publishes",
+        "component": "BrakeModule",
+        "signal": "DoorAngle",
+        "port": "AmbientFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "WindowHandler",
+        "signal": "DoorAngle"
+      },
+      {
+        "type": "publishes",
+        "component": "ClimateDriver",
+        "signal": "WindowSpeed",
+        "port": "EngineDataChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "LightingCoordinator",
+        "signal": "WindowSpeed"
+      },
+      {
+        "type": "provides",
+        "component": "AirbagDriver",
+        "interface": "DiagSpeedData",
+        "consumer": "LightingCoordinator"
+      },
+      {
+        "type": "provides",
+        "component": "NetworkDriver",
+        "interface": "NetworkModeService",
+        "consumer": "WindowController"
+      },
+      {
+        "type": "provides",
+        "component": "NetworkDriver",
+        "interface": "WindowStateInterface",
+        "consumer": "WindowController"
+      },
+      {
+        "type": "depends_on",
+        "component": "BrakeModule",
+        "target": "NetworkDriver",
+        "signal": "WheelAngle"
+      },
+      {
+        "type": "depends_on",
+        "component": "AirbagDriver",
+        "target": "LightingCoordinator",
+        "signal": "SteeringTemperature"
+      },
+      {
+        "type": "depends_on",
+        "component": "WindowHandler",
+        "target": "AirbagDriver",
+        "signal": "WheelAngle"
+      },
+      {
+        "type": "depends_on",
+        "component": "NetworkDriver",
+        "target": "WindowHandler",
+        "signal": "WheelAngle"
+      },
+      {
+        "type": "depends_on",
+        "component": "ClimateDriver",
+        "target": "WindowController",
+        "signal": "DoorAngle"
+      }
+    ],
+    "issues": [
+      {
+        "type": "undefined_component",
+        "item": "ChargingProxy"
+      },
+      {
+        "type": "orphan_signal",
+        "item": "WindowDiagnostics"
+      }
+    ],
+    "revision_of": null,
+    "changes": []
+  },
+  "CORP-02-B": {
+    "labels": {
+      "NetworkDriver": "component",
+      "WindowController": "component",
+      "BrakeModule": "component",
+      "WindowHandler": "component",
+      "AirbagDriver": "component",
+      "LightingCoordinator": "component",
+      "BrakeMonitor": "component",
+      "GearStatus": "signal",
+      "MirrorState": "signal",
+      "AmbientState": "signal",
+      "SteeringTemperature": "signal",
+      "DoorAngle": "signal",
+      "WindowSpeed": "signal",
+      "AmbientFeedInput": "port",
+      "EngineDataChannel": "port",
+      "ParkingDataInput": "port",
+      "DiagSpeedData": "interface",
+      "NetworkModeService": "interface",
+      "WindowStateInterface": "interface"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "WindowController",
+        "signal": "GearStatus",
+        "port": "ParkingDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "WindowHandler",
+        "signal": "GearStatus"
+      },
+      {
+        "type": "publishes",
+        "component": "LightingCoordinator",
+        "signal": "MirrorState",
+        "port": "AmbientFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "BrakeModule",
+        "signal": "MirrorState"
+      },
+      {
+        "type": "publishes",
+        "component": "WindowController",
+        "signal": "AmbientState",
+        "port": "ParkingDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "AirbagDriver",
+        "signal": "AmbientState"
+      },
+      {
+        "type": "publishes",
+        "component": "WindowController",
+        "signal": "SteeringTemperature",
+        "port": "ParkingDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "BrakeModule",
+        "signal": "SteeringTemperature"
+      },
+      {
+        "type": "publishes",
+        "component": "BrakeModule",
+        "signal": "DoorAngle",
+        "port": "AmbientFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "WindowHandler",
+        "signal": "DoorAngle"
+      },
+      {
+        "type": "publishes",
+        "component": "BrakeMonitor",
+        "signal": "WindowSpeed",
+        "port": "EngineDataChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "LightingCoordinator",
+        "signal": "WindowSpeed"
+      },
+      {
+        "type": "provides",
+        "component": "AirbagDriver",
+        "interface": "DiagSpeedData",
+        "consumer": "LightingCoordinator"
+      },
+      {
+        "type": "provides",
+        "component": "NetworkDriver",
+        "interface": "NetworkModeService",
+        "consumer": "WindowController"
+      },
+      {
+        "type": "provides",
+        "component": "NetworkDriver",
+        "interface": "WindowStateInterface",
+        "consumer": "WindowController"
+      },
+      {
+        "type": "depends_on",
+        "component": "BrakeModule",
+        "target": "NetworkDriver",
+        "signal": "GearStatus"
+      },
+      {
+        "type": "depends_on",
+        "component": "AirbagDriver",
+        "target": "LightingCoordinator",
+        "signal": "SteeringTemperature"
+      },
+      {
+        "type": "depends_on",
+        "component": "WindowHandler",
+        "target": "AirbagDriver",
+        "signal": "GearStatus"
+      },
+      {
+        "type": "depends_on",
+        "component": "NetworkDriver",
+        "target": "WindowHandler",
+        "signal": "GearStatus"
+      },
+      {
+        "type": "depends_on",
+        "component": "BrakeMonitor",
+        "target": "WindowController",
+        "signal": "DoorAngle"
+      }
+    ],
+    "issues": [],
+    "revision_of": "CORP-02",
+    "changes": [
+      {
+        "type": "removed",
+        "entity_type": "component",
+        "entity": "ChargingProxy"
+      },
+      {
+        "type": "removed",
+        "entity_type": "component",
+        "entity": "ClimateDriver"
+      },
+      {
+        "type": "added",
+        "entity_type": "component",
+        "entity": "BrakeMonitor"
+      },
+      {
+        "type": "removed",
+        "entity_type": "signal",
+        "entity": "WheelAngle"
+      },
+      {
+        "type": "removed",
+        "entity_type": "signal",
+        "entity": "WindowDiagnostics"
+      },
+      {
+        "type": "added",
+        "entity_type": "signal",
+        "entity": "GearStatus"
+      }
+    ]
+  },
+  "CORP-03": {
+    "labels": {
+      "BatteryManager": "component",
+      "SensorDriver": "component",
+      "LightingMonitor": "component",
+      "EngineHandler": "component",
+      "NetworkModule": "component",
+      "NetworkHandler": "component",
+      "BatteryController": "component",
+      "MirrorRequest": "signal",
+      "WiperStatus": "signal",
+      "MirrorPosition": "signal",
+      "VehicleAngle": "signal",
+      "WheelSpeed": "signal",
+      "PedalVoltage": "signal",
+      "DoorDataChannel": "port",
+      "MirrorFeedInput": "port",
+      "WindowDataOutput": "port",
+      "AirbagStateInfo": "interface",
+      "BatteryModeService": "interface",
+      "WiperStateData": "interface",
+      "AirbagProxy": "component",
+      "AmbientDiagnostics": "signal"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "LightingMonitor",
+        "signal": "MirrorRequest",
+        "port": "MirrorFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "BatteryManager",
+        "signal": "MirrorRequest"
+      },
+      {
+        "type": "publishes",
+        "component": "BatteryManager",
+        "signal": "WiperStatus",
+        "port": "MirrorFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "SensorDriver",
+        "signal": "WiperStatus"
+      },
+      {
+        "type": "publishes",
+        "component": "LightingMonitor",
+        "signal": "MirrorPosition",
+        "port": "WindowDataOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "NetworkHandler",
+        "signal": "MirrorPosition"
+      },
+      {
+        "type": "publishes",
+        "component": "NetworkModule",
+        "signal": "VehicleAngle",
+        "port": "MirrorFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "EngineHandler",
+        "signal": "VehicleAngle"
+      },
+      {
+        "type": "publishes",
+        "component": "LightingMonitor",
+        "signal": "WheelSpeed",
+        "port": "MirrorFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "EngineHandler",
+        "signal": "WheelSpeed"
+      },
+      {
+        "type": "publishes",
+        "component": "EngineHandler",
+        "signal": "PedalVoltage",
+        "port": "MirrorFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "BatteryManager",
+        "signal": "PedalVoltage"
+      },
+      {
+        "type": "provides",
+        "component": "BatteryManager",
+        "interface": "AirbagStateInfo",
+        "consumer": "NetworkHandler"
+      },
+      {
+        "type": "provides",
+        "component": "EngineHandler",
+        "interface": "BatteryModeService",
+        "consumer": "NetworkModule"
+      },
+      {
+        "type": "provides",
+        "component": "NetworkModule",
+        "interface": "WiperStateData",
+        "consumer": "NetworkHandler"
+      },
+      {
+        "type": "depends_on",
+        "component": "BatteryController",
+        "target": "NetworkHandler",
+        "signal": "MirrorPosition"
+      },
+      {
+        "type": "depends_on",
+        "component": "NetworkModule",
+        "target": "BatteryController",
+        "signal": "WheelSpeed"
+      },
+      {
+        "type": "depends_on",
+        "component": "LightingMonitor",
+        "target": "BatteryController",
+        "signal": "MirrorPosition"
+      },
+      {
+        "type": "depends_on",
+        "component": "NetworkModule",
+        "target": "BatteryController",
+        "signal": "MirrorPosition"
+      }
+    ],
+    "issues": [
+      {
+        "type": "undefined_component",
+        "item": "AirbagProxy"
+      },
+      {
+        "type": "orphan_signal",
+        "item": "AmbientDiagnostics"
+      }
+    ],
+    "revision_of": null,
+    "changes": []
+  },
+  "CORP-03-B": {
+    "labels": {
+      "BatteryManager": "component",
+      "SensorDriver": "component",
+      "LightingMonitor": "component",
+      "EngineHandler": "component",
+      "NetworkModule": "component",
+      "NetworkHandler": "component",
+      "BatteryService": "component",
+      "DoorAngle": "signal",
+      "WiperStatus": "signal",
+      "MirrorPosition": "signal",
+      "VehicleAngle": "signal",
+      "WheelSpeed": "signal",
+      "PedalVoltage": "signal",
+      "DoorDataChannel": "port",
+      "MirrorFeedInput": "port",
+      "WindowDataOutput": "port",
+      "AirbagStateInfo": "interface",
+      "BatteryModeService": "interface",
+      "WiperStateData": "interface"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "LightingMonitor",
+        "signal": "DoorAngle",
+        "port": "MirrorFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "BatteryManager",
+        "signal": "DoorAngle"
+      },
+      {
+        "type": "publishes",
+        "component": "BatteryManager",
+        "signal": "WiperStatus",
+        "port": "MirrorFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "SensorDriver",
+        "signal": "WiperStatus"
+      },
+      {
+        "type": "publishes",
+        "component": "LightingMonitor",
+        "signal": "MirrorPosition",
+        "port": "WindowDataOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "NetworkHandler",
+        "signal": "MirrorPosition"
+      },
+      {
+        "type": "publishes",
+        "component": "NetworkModule",
+        "signal": "VehicleAngle",
+        "port": "MirrorFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "EngineHandler",
+        "signal": "VehicleAngle"
+      },
+      {
+        "type": "publishes",
+        "component": "LightingMonitor",
+        "signal": "WheelSpeed",
+        "port": "MirrorFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "EngineHandler",
+        "signal": "WheelSpeed"
+      },
+      {
+        "type": "publishes",
+        "component": "EngineHandler",
+        "signal": "PedalVoltage",
+        "port": "MirrorFeedInput"
+      },
+      {
+        "type": "consumes",
+        "component": "BatteryManager",
+        "signal": "PedalVoltage"
+      },
+      {
+        "type": "provides",
+        "component": "BatteryManager",
+        "interface": "AirbagStateInfo",
+        "consumer": "NetworkHandler"
+      },
+      {
+        "type": "provides",
+        "component": "EngineHandler",
+        "interface": "BatteryModeService",
+        "consumer": "NetworkModule"
+      },
+      {
+        "type": "provides",
+        "component": "NetworkModule",
+        "interface": "WiperStateData",
+        "consumer": "NetworkHandler"
+      },
+      {
+        "type": "depends_on",
+        "component": "BatteryService",
+        "target": "NetworkHandler",
+        "signal": "MirrorPosition"
+      },
+      {
+        "type": "depends_on",
+        "component": "NetworkModule",
+        "target": "BatteryService",
+        "signal": "WheelSpeed"
+      },
+      {
+        "type": "depends_on",
+        "component": "LightingMonitor",
+        "target": "BatteryService",
+        "signal": "MirrorPosition"
+      },
+      {
+        "type": "depends_on",
+        "component": "NetworkModule",
+        "target": "BatteryService",
+        "signal": "MirrorPosition"
+      }
+    ],
+    "issues": [],
+    "revision_of": "CORP-03",
+    "changes": [
+      {
+        "type": "removed",
+        "entity_type": "component",
+        "entity": "AirbagProxy"
+      },
+      {
+        "type": "removed",
+        "entity_type": "component",
+        "entity": "BatteryController"
+      },
+      {
+        "type": "added",
+        "entity_type": "component",
+        "entity": "BatteryService"
+      },
+      {
+        "type": "removed",
+        "entity_type": "signal",
+        "entity": "AmbientDiagnostics"
+      },
+      {
+        "type": "removed",
+        "entity_type": "signal",
+        "entity": "MirrorRequest"
+      },
+      {
+        "type": "added",
+        "entity_type": "signal",
+        "entity": "DoorAngle"
+      }
+    ]
+  },
+  "CORP-04": {
+    "labels": {
+      "ParkingMonitor": "component",
+      "AirbagDriver": "component",
+      "WindowCoordinator": "component",
+      "ChargingDriver": "component",
+      "ClimateHandler": "component",
+      "WiperVoltage": "signal",
+      "PedalCommand": "signal",
+      "MirrorLevel": "signal",
+      "EngineLevel": "signal",
+      "WindowTorque": "signal",
+      "BatteryVoltage": "signal",
+      "DoorTemperature": "signal",
+      "AmbientStatusChannel": "port",
+      "CabinFeedChannel": "port",
+      "SteeringDataOutput": "port",
+      "BatterySpeedInfo": "interface",
+      "EngineTorqueInterface": "interface",
+      "GatewayTorqueInterface": "interface",
+      "DoorProxy": "component",
+      "BrakeDiagnostics": "signal"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "WindowCoordinator",
+        "signal": "WiperVoltage",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "ChargingDriver",
+        "signal": "WiperVoltage"
+      },
+      {
+        "type": "publishes",
+        "component": "AirbagDriver",
+        "signal": "PedalCommand",
+        "port": "SteeringDataOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "WindowCoordinator",
+        "signal": "PedalCommand"
+      },
+      {
+        "type": "publishes",
+        "component": "WindowCoordinator",
+        "signal": "MirrorLevel",
+        "port": "SteeringDataOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "ParkingMonitor",
+        "signal": "MirrorLevel"
+      },
+      {
+        "type": "publishes",
+        "component": "WindowCoordinator",
+        "signal": "EngineLevel",
+        "port": "SteeringDataOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "ParkingMonitor",
+        "signal": "EngineLevel"
+      },
+      {
+        "type": "publishes",
+        "component": "ClimateHandler",
+        "signal": "WindowTorque",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "AirbagDriver",
+        "signal": "WindowTorque"
+      },
+      {
+        "type": "publishes",
+        "component": "ChargingDriver",
+        "signal": "BatteryVoltage",
+        "port": "CabinFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "WindowCoordinator",
+        "signal": "BatteryVoltage"
+      },
+      {
+        "type": "publishes",
+        "component": "ClimateHandler",
+        "signal": "DoorTemperature",
+        "port": "AmbientStatusChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "AirbagDriver",
+        "signal": "DoorTemperature"
+      },
+      {
+        "type": "provides",
+        "component": "ChargingDriver",
+        "interface": "BatterySpeedInfo",
+        "consumer": "ClimateHandler"
+      },
+      {
+        "type": "provides",
+        "component": "ParkingMonitor",
+        "interface": "EngineTorqueInterface",
+        "consumer": "ClimateHandler"
+      },
+      {
+        "type": "provides",
+        "component": "ParkingMonitor",
+        "interface": "GatewayTorqueInterface",
+        "consumer": "ClimateHandler"
+      },
+      {
+        "type": "depends_on",
+        "component": "AirbagDriver",
+        "target": "ParkingMonitor",
+        "signal": "EngineLevel"
+      },
+      {
+        "type": "depends_on",
+        "component": "WindowCoordinator",
+        "target": "ParkingMonitor",
+        "signal": "WiperVoltage"
+      },
+      {
+        "type": "depends_on",
+        "component": "AirbagDriver",
+        "target": "WindowCoordinator",
+        "signal": "BatteryVoltage"
+      },
+      {
+        "type": "depends_on",
+        "component": "WindowCoordinator",
+        "target": "ParkingMonitor",
+        "signal": "EngineLevel"
+      }
+    ],
+    "issues": [
+      {
+        "type": "undefined_component",
+        "item": "DoorProxy"
+      },
+      {
+        "type": "orphan_signal",
+        "item": "BrakeDiagnostics"
+      }
+    ],
+    "revision_of": null,
+    "changes": []
+  },
+  "CORP-05": {
+    "labels": {
+      "BatteryService": "component",
+      "MirrorModule": "component",
+      "DiagMonitor": "component",
+      "BrakeHandler": "component",
+      "DoorModule": "component",
+      "DoorController": "component",
+      "WheelTorque": "signal",
+      "ChargePosition": "signal",
+      "BatteryLevel": "signal",
+      "GearRequest": "signal",
+      "CruiseRequest": "signal",
+      "DoorStatusChannel": "port",
+      "ParkingDataPort": "port",
+      "SteeringStatusPort": "port",
+      "BodyStateInfo": "interface",
+      "DiagSpeedInterface": "interface",
+      "GatewayTorqueData": "interface",
+      "MirrorDiagnostics": "signal"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "DiagMonitor",
+        "signal": "WheelTorque",
+        "port": "DoorStatusChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "BrakeHandler",
+        "signal": "WheelTorque"
+      },
+      {
+        "type": "publishes",
+        "component": "BatteryService",
+        "signal": "ChargePosition",
+        "port": "SteeringStatusPort"
+      },
+      {
+        "type": "consumes",
+        "component": "DoorController",
+        "signal": "ChargePosition"
+      },
+      {
+        "type": "publishes",
+        "component": "MirrorModule",
+        "signal": "BatteryLevel",
+        "port": "SteeringStatusPort"
+      },
+      {
+        "type": "consumes",
+        "component": "DoorModule",
+        "signal": "BatteryLevel"
+      },
+      {
+        "type": "publishes",
+        "component": "BrakeHandler",
+        "signal": "GearRequest",
+        "port": "DoorStatusChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "MirrorModule",
+        "signal": "GearRequest"
+      },
+      {
+        "type": "publishes",
+        "component": "BatteryService",
+        "signal": "CruiseRequest",
+        "port": "SteeringStatusPort"
+      },
+      {
+        "type": "consumes",
+        "component": "DoorController",
+        "signal": "CruiseRequest"
+      },
+      {
+        "type": "provides",
+        "component": "DiagMonitor",
+        "interface": "BodyStateInfo",
+        "consumer": "BrakeHandler"
+      },
+      {
+        "type": "provides",
+        "component": "DiagMonitor",
+        "interface": "DiagSpeedInterface",
+        "consumer": "BatteryService"
+      },
+      {
+        "type": "provides",
+        "component": "MirrorModule",
+        "interface": "GatewayTorqueData",
+        "consumer": "BatteryService"
+      },
+      {
+        "type": "depends_on",
+        "component": "DoorController",
+        "target": "MirrorModule",
+        "signal": "ChargePosition"
+      },
+      {
+        "type": "depends_on",
+        "component": "BrakeHandler",
+        "target": "DiagMonitor",
+        "signal": "GearRequest"
+      },
+      {
+        "type": "depends_on",
+        "component": "BatteryService",
+        "target": "DoorModule",
+        "signal": "WheelTorque"
+      },
+      {
+        "type": "depends_on",
+        "component": "BatteryService",
+        "target": "DoorController",
+        "signal": "WheelTorque"
+      },
+      {
+        "type": "depends_on",
+        "component": "DoorModule",
+        "target": "DoorController",
+        "signal": "CruiseRequest"
+      }
+    ],
+    "issues": [
+      {
+        "type": "orphan_signal",
+        "item": "MirrorDiagnostics"
+      }
+    ],
+    "revision_of": null,
+    "changes": []
+  },
+  "CORP-06": {
+    "labels": {
+      "ClimateManager": "component",
+      "ClimateCoordinator": "component",
+      "DiagService": "component",
+      "BatteryModule": "component",
+      "DoorModule": "component",
+      "EngineLevel": "signal",
+      "BatteryRequest": "signal",
+      "WheelStatus": "signal",
+      "DoorHealth": "signal",
+      "ChargeCommand": "signal",
+      "GearStatusChannel": "port",
+      "WindowDataInput": "port",
+      "WiperDataInput": "port",
+      "GatewaySpeedInfo": "interface",
+      "MirrorTorqueService": "interface",
+      "SeatTorqueInterface": "interface",
+      "WindowProxy": "component",
+      "SeatDiagnostics": "signal"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "ClimateManager",
+        "signal": "EngineLevel",
+        "port": "WiperDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "ClimateCoordinator",
+        "signal": "EngineLevel"
+      },
+      {
+        "type": "publishes",
+        "component": "DiagService",
+        "signal": "BatteryRequest",
+        "port": "WiperDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "BatteryModule",
+        "signal": "BatteryRequest"
+      },
+      {
+        "type": "publishes",
+        "component": "DiagService",
+        "signal": "WheelStatus",
+        "port": "WindowDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "ClimateCoordinator",
+        "signal": "WheelStatus"
+      },
+      {
+        "type": "publishes",
+        "component": "DoorModule",
+        "signal": "DoorHealth",
+        "port": "GearStatusChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "ClimateCoordinator",
+        "signal": "DoorHealth"
+      },
+      {
+        "type": "publishes",
+        "component": "DiagService",
+        "signal": "ChargeCommand",
+        "port": "WiperDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "DoorModule",
+        "signal": "ChargeCommand"
+      },
+      {
+        "type": "provides",
+        "component": "ClimateManager",
+        "interface": "GatewaySpeedInfo",
+        "consumer": "ClimateCoordinator"
+      },
+      {
+        "type": "provides",
+        "component": "DiagService",
+        "interface": "MirrorTorqueService",
+        "consumer": "BatteryModule"
+      },
+      {
+        "type": "provides",
+        "component": "ClimateCoordinator",
+        "interface": "SeatTorqueInterface",
+        "consumer": "BatteryModule"
+      },
+      {
+        "type": "depends_on",
+        "component": "BatteryModule",
+        "target": "DiagService",
+        "signal": "EngineLevel"
+      },
+      {
+        "type": "depends_on",
+        "component": "DoorModule",
+        "target": "ClimateCoordinator",
+        "signal": "BatteryRequest"
+      },
+      {
+        "type": "depends_on",
+        "component": "ClimateCoordinator",
+        "target": "ClimateManager",
+        "signal": "EngineLevel"
+      },
+      {
+        "type": "depends_on",
+        "component": "ClimateCoordinator",
+        "target": "DiagService",
+        "signal": "DoorHealth"
+      }
+    ],
+    "issues": [
+      {
+        "type": "undefined_component",
+        "item": "WindowProxy"
+      },
+      {
+        "type": "orphan_signal",
+        "item": "SeatDiagnostics"
+      }
+    ],
+    "revision_of": null,
+    "changes": []
+  },
+  "CORP-07": {
+    "labels": {
+      "GatewayController": "component",
+      "ChargingModule": "component",
+      "BodyService": "component",
+      "AirbagHandler": "component",
+      "SensorService": "component",
+      "WindowCurrent": "signal",
+      "ParkingVoltage": "signal",
+      "BrakeAngle": "signal",
+      "ParkingCommand": "signal",
+      "WheelTemperature": "signal",
+      "BrakeStatusOutput": "port",
+      "EngineDataChannel": "port",
+      "EngineStatusOutput": "port",
+      "MirrorStateInfo": "interface",
+      "WindowModeInfo": "interface",
+      "WiperTorqueData": "interface"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "SensorService",
+        "signal": "WindowCurrent",
+        "port": "EngineStatusOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "AirbagHandler",
+        "signal": "WindowCurrent"
+      },
+      {
+        "type": "publishes",
+        "component": "ChargingModule",
+        "signal": "ParkingVoltage",
+        "port": "BrakeStatusOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "AirbagHandler",
+        "signal": "ParkingVoltage"
+      },
+      {
+        "type": "publishes",
+        "component": "BodyService",
+        "signal": "BrakeAngle",
+        "port": "EngineStatusOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "SensorService",
+        "signal": "BrakeAngle"
+      },
+      {
+        "type": "publishes",
+        "component": "BodyService",
+        "signal": "ParkingCommand",
+        "port": "EngineDataChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "SensorService",
+        "signal": "ParkingCommand"
+      },
+      {
+        "type": "publishes",
+        "component": "ChargingModule",
+        "signal": "WheelTemperature",
+        "port": "EngineStatusOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "BodyService",
+        "signal": "WheelTemperature"
+      },
+      {
+        "type": "provides",
+        "component": "SensorService",
+        "interface": "MirrorStateInfo",
+        "consumer": "GatewayController"
+      },
+      {
+        "type": "provides",
+        "component": "SensorService",
+        "interface": "WindowModeInfo",
+        "consumer": "ChargingModule"
+      },
+      {
+        "type": "provides",
+        "component": "AirbagHandler",
+        "interface": "WiperTorqueData",
+        "consumer": "GatewayController"
+      },
+      {
+        "type": "depends_on",
+        "component": "SensorService",
+        "target": "AirbagHandler",
+        "signal": "BrakeAngle"
+      },
+      {
+        "type": "depends_on",
+        "component": "GatewayController",
+        "target": "SensorService",
+        "signal": "WindowCurrent"
+      },
+      {
+        "type": "depends_on",
+        "component": "GatewayController",
+        "target": "ChargingModule",
+        "signal": "ParkingVoltage"
+      },
+      {
+        "type": "depends_on",
+        "component": "SensorService",
+        "target": "AirbagHandler",
+        "signal": "WheelTemperature"
+      },
+      {
+        "type": "depends_on",
+        "component": "SensorService",
+        "target": "GatewayController",
+        "signal": "ParkingVoltage"
+      }
+    ],
+    "issues": [],
+    "revision_of": null,
+    "changes": []
+  },
+  "CORP-08": {
+    "labels": {
+      "SeatService": "component",
+      "ParkingController": "component",
+      "ChargingHandler": "component",
+      "WiperMonitor": "component",
+      "SteeringService": "component",
+      "BrakeHealth": "signal",
+      "GearCommand": "signal",
+      "ChargeCurrent": "signal",
+      "CabinRequest": "signal",
+      "SteeringTemperature": "signal",
+      "ChargeTemperature": "signal",
+      "GearSpeed": "signal",
+      "BatteryFeedOutput": "port",
+      "CabinFeedOutput": "port",
+      "ParkingStatusOutput": "port",
+      "DoorTorqueService": "interface",
+      "NetworkTorqueService": "interface",
+      "SteeringModeService": "interface",
+      "SeatProxy": "component",
+      "WiperDiagnostics": "signal"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "SeatService",
+        "signal": "BrakeHealth",
+        "port": "CabinFeedOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "ChargingHandler",
+        "signal": "BrakeHealth"
+      },
+      {
+        "type": "publishes",
+        "component": "WiperMonitor",
+        "signal": "GearCommand",
+        "port": "ParkingStatusOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "SteeringService",
+        "signal": "GearCommand"
+      },
+      {
+        "type": "publishes",
+        "component": "WiperMonitor",
+        "signal": "ChargeCurrent",
+        "port": "BatteryFeedOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "ChargingHandler",
+        "signal": "ChargeCurrent"
+      },
+      {
+        "type": "publishes",
+        "component": "WiperMonitor",
+        "signal": "CabinRequest",
+        "port": "ParkingStatusOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "ChargingHandler",
+        "signal": "CabinRequest"
+      },
+      {
+        "type": "publishes",
+        "component": "WiperMonitor",
+        "signal": "SteeringTemperature",
+        "port": "CabinFeedOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatService",
+        "signal": "SteeringTemperature"
+      },
+      {
+        "type": "publishes",
+        "component": "SteeringService",
+        "signal": "ChargeTemperature",
+        "port": "CabinFeedOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatService",
+        "signal": "ChargeTemperature"
+      },
+      {
+        "type": "publishes",
+        "component": "SteeringService",
+        "signal": "GearSpeed",
+        "port": "CabinFeedOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "ChargingHandler",
+        "signal": "GearSpeed"
+      },
+      {
+        "type": "provides",
+        "component": "ParkingController",
+        "interface": "DoorTorqueService",
+        "consumer": "ChargingHandler"
+      },
+      {
+        "type": "provides",
+        "component": "ChargingHandler",
+        "interface": "NetworkTorqueService",
+        "consumer": "ParkingController"
+      },
+      {
+        "type": "provides",
+        "component": "WiperMonitor",
+        "interface": "SteeringModeService",
+        "consumer": "ParkingController"
+      },
+      {
+        "type": "depends_on",
+        "component": "WiperMonitor",
+        "target": "SeatService",
+        "signal": "ChargeCurrent"
+      },
+      {
+        "type": "depends_on",
+        "component": "ChargingHandler",
+        "target": "WiperMonitor",
+        "signal": "GearCommand"
+      },
+      {
+        "type": "depends_on",
+        "component": "ChargingHandler",
+        "target": "ParkingController",
+        "signal": "GearSpeed"
+      }
+    ],
+    "issues": [
+      {
+        "type": "undefined_component",
+        "item": "SeatProxy"
+      },
+      {
+        "type": "orphan_signal",
+        "item": "WiperDiagnostics"
+      }
+    ],
+    "revision_of": null,
+    "changes": []
+  },
+  "CORP-09": {
+    "labels": {
+      "WindowModule": "component",
+      "NetworkHandler": "component",
+      "WiperManager": "component",
+      "MirrorDriver": "component",
+      "BodyService": "component",
+      "MirrorCurrent": "signal",
+      "AmbientVoltage": "signal",
+      "CabinTorque": "signal",
+      "DoorCommand": "signal",
+      "SeatHealth": "signal",
+      "BrakeTorque": "signal",
+      "GearLevel": "signal",
+      "DoorFeedChannel": "port",
+      "EngineDataOutput": "port",
+      "ParkingStatusPort": "port",
+      "LightingTorqueInterface": "interface",
+      "SeatStateService": "interface",
+      "SensorStateInterface": "interface",
+      "ParkingProxy": "component",
+      "EngineDiagnostics": "signal"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "MirrorDriver",
+        "signal": "MirrorCurrent",
+        "port": "DoorFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "NetworkHandler",
+        "signal": "MirrorCurrent"
+      },
+      {
+        "type": "publishes",
+        "component": "NetworkHandler",
+        "signal": "AmbientVoltage",
+        "port": "DoorFeedChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "WindowModule",
+        "signal": "AmbientVoltage"
+      },
+      {
+        "type": "publishes",
+        "component": "NetworkHandler",
+        "signal": "CabinTorque",
+        "port": "ParkingStatusPort"
+      },
+      {
+        "type": "consumes",
+        "component": "WindowModule",
+        "signal": "CabinTorque"
+      },
+      {
+        "type": "publishes",
+        "component": "NetworkHandler",
+        "signal": "DoorCommand",
+        "port": "EngineDataOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "MirrorDriver",
+        "signal": "DoorCommand"
+      },
+      {
+        "type": "publishes",
+        "component": "MirrorDriver",
+        "signal": "SeatHealth",
+        "port": "ParkingStatusPort"
+      },
+      {
+        "type": "consumes",
+        "component": "WiperManager",
+        "signal": "SeatHealth"
+      },
+      {
+        "type": "publishes",
+        "component": "BodyService",
+        "signal": "BrakeTorque",
+        "port": "EngineDataOutput"
+      },
+      {
+        "type": "consumes",
+        "component": "NetworkHandler",
+        "signal": "BrakeTorque"
+      },
+      {
+        "type": "publishes",
+        "component": "MirrorDriver",
+        "signal": "GearLevel",
+        "port": "ParkingStatusPort"
+      },
+      {
+        "type": "consumes",
+        "component": "NetworkHandler",
+        "signal": "GearLevel"
+      },
+      {
+        "type": "provides",
+        "component": "WindowModule",
+        "interface": "LightingTorqueInterface",
+        "consumer": "WiperManager"
+      },
+      {
+        "type": "provides",
+        "component": "BodyService",
+        "interface": "SeatStateService",
+        "consumer": "MirrorDriver"
+      },
+      {
+        "type": "provides",
+        "component": "NetworkHandler",
+        "interface": "SensorStateInterface",
+        "consumer": "MirrorDriver"
+      },
+      {
+        "type": "depends_on",
+        "component": "NetworkHandler",
+        "target": "BodyService",
+        "signal": "DoorCommand"
+      },
+      {
+        "type": "depends_on",
+        "component": "MirrorDriver",
+        "target": "WiperManager",
+        "signal": "DoorCommand"
+      },
+      {
+        "type": "depends_on",
+        "component": "MirrorDriver",
+        "target": "NetworkHandler",
+        "signal": "SeatHealth"
+      },
+      {
+        "type": "depends_on",
+        "component": "WindowModule",
+        "target": "WiperManager",
+        "signal": "AmbientVoltage"
+      }
+    ],
+    "issues": [
+      {
+        "type": "undefined_component",
+        "item": "ParkingProxy"
+      },
+      {
+        "type": "orphan_signal",
+        "item": "EngineDiagnostics"
+      }
+    ],
+    "revision_of": null,
+    "changes": []
+  },
+  "CORP-10": {
+    "labels": {
+      "WiperHandler": "component",
+      "ChargingService": "component",
+      "ClimateMonitor": "component",
+      "SeatController": "component",
+      "EngineService": "component",
+      "BatteryModule": "component",
+      "NetworkService": "component",
+      "AmbientAngle": "signal",
+      "AmbientSpeed": "signal",
+      "EnginePosition": "signal",
+      "WindowVoltage": "signal",
+      "ChargeTemperature": "signal",
+      "ChargeVoltage": "signal",
+      "MirrorTemperature": "signal",
+      "DoorFeedPort": "port",
+      "MirrorDataInput": "port",
+      "VehicleDataChannel": "port",
+      "BodySpeedInterface": "interface",
+      "EngineStateService": "interface",
+      "MirrorSpeedInterface": "interface",
+      "GatewayProxy": "component",
+      "PedalDiagnostics": "signal"
+    },
+    "relations": [
+      {
+        "type": "publishes",
+        "component": "WiperHandler",
+        "signal": "AmbientAngle",
+        "port": "VehicleDataChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "EngineService",
+        "signal": "AmbientAngle"
+      },
+      {
+        "type": "publishes",
+        "component": "BatteryModule",
+        "signal": "AmbientSpeed",
+        "port": "MirrorDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "NetworkService",
+        "signal": "AmbientSpeed"
+      },
+      {
+        "type": "publishes",
+        "component": "ClimateMonitor",
+        "signal": "EnginePosition",
+        "port": "DoorFeedPort"
+      },
+      {
+        "type": "consumes",
+        "component": "ChargingService",
+        "signal": "EnginePosition"
+      },
+      {
+        "type": "publishes",
+        "component": "ChargingService",
+        "signal": "WindowVoltage",
+        "port": "MirrorDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatController",
+        "signal": "WindowVoltage"
+      },
+      {
+        "type": "publishes",
+        "component": "NetworkService",
+        "signal": "ChargeTemperature",
+        "port": "DoorFeedPort"
+      },
+      {
+        "type": "consumes",
+        "component": "SeatController",
+        "signal": "ChargeTemperature"
+      },
+      {
+        "type": "publishes",
+        "component": "BatteryModule",
+        "signal": "ChargeVoltage",
+        "port": "MirrorDataInput"
+      },
+      {
+        "type": "consumes",
+        "component": "NetworkService",
+        "signal": "ChargeVoltage"
+      },
+      {
+        "type": "publishes",
+        "component": "ClimateMonitor",
+        "signal": "MirrorTemperature",
+        "port": "VehicleDataChannel"
+      },
+      {
+        "type": "consumes",
+        "component": "WiperHandler",
+        "signal": "MirrorTemperature"
+      },
+      {
+        "type": "provides",
+        "component": "SeatController",
+        "interface": "BodySpeedInterface",
+        "consumer": "ClimateMonitor"
+      },
+      {
+        "type": "provides",
+        "component": "ClimateMonitor",
+        "interface": "EngineStateService",
+        "consumer": "BatteryModule"
+      },
+      {
+        "type": "provides",
+        "component": "BatteryModule",
+        "interface": "MirrorSpeedInterface",
+        "consumer": "WiperHandler"
+      },
+      {
+        "type": "depends_on",
+        "component": "SeatController",
+        "target": "EngineService",
+        "signal": "WindowVoltage"
+      },
+      {
+        "type": "depends_on",
+        "component": "WiperHandler",
+        "target": "SeatController",
+        "signal": "AmbientSpeed"
+      },
+      {
+        "type": "depends_on",
+        "component": "BatteryModule",
+        "target": "ClimateMonitor",
+        "signal": "AmbientAngle"
+      },
+      {
+        "type": "depends_on",
+        "component": "WiperHandler",
+        "target": "ClimateMonitor",
+        "signal": "EnginePosition"
+      }
+    ],
+    "issues": [
+      {
+        "type": "undefined_component",
+        "item": "GatewayProxy"
+      },
+      {
+        "type": "orphan_signal",
+        "item": "PedalDiagnostics"
+      }
+    ],
+    "revision_of": null,
+    "changes": []
+  }
+}

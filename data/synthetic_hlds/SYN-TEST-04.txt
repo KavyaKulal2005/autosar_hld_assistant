@@ -1,0 +1,21 @@
+DOCUMENT: SYN-TEST-04
+TITLE: Synthetic Architecture SYN-TEST-04
+REVISION: A
+SECTION: Overview
+Access to SeatRequest is granted through LightingModeData.
+The CruiseController offers ChargingStateInfo to DiagDriver.
+The WiperMonitor subscribes to CruiseLevel from CruiseController.
+Access to SeatRequest is granted through ChargingStateInfo.
+The LightingController uses SeatModeData.
+CruisePosition is emitted by the DiagDriver on ParkingCmdPort.
+Access to CruiseLevel is granted through LightingModeData.
+CruiseController and WiperMonitor exchange CruisePosition.
+The WiperMonitor subscribes to SeatRequest from CruiseController.
+The LightingController sends WiperTorque via PedalCmdHook.
+The LightingController receives SeatRequest from CruiseController.
+The LightingController publishes WiperTorque through WiperStatusOutput.
+CruiseLevel is emitted by the DiagDriver on WiperStatusOutput.
+The WiperMonitor sends CruiseLevel via WiperStatusOutput.
+The WiperMonitor offers SeatModeData to LightingController.
+See the RevisionHistory for further details.
+See the TestPlan for further details.

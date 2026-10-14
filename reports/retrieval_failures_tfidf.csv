@@ -1,0 +1,10 @@
+question,type,gold,top_score,retrieved_docs
+Who offers the diag speed data interface to other components?,paraphrase,"[[""CORP-02"", ""AirbagDriver""], [""CORP-02-B"", ""AirbagDriver""]]",0.1454,CORP-07 CORP-04 CORP-03-B
+Which software component is the source of the charge temperature signal?,paraphrase,"[[""CORP-08"", ""SteeringService""], [""CORP-10"", ""NetworkService""]]",0.1846,CORP-07 CORP-04 CORP-03-B
+Which software component is the source of the mirror state signal?,paraphrase,"[[""CORP-02"", ""LightingCoordinator""], [""CORP-02-B"", ""LightingCoordinator""]]",0.1846,CORP-07 CORP-04 CORP-03-B
+Where does the door health signal originate?,paraphrase,"[[""CORP-06"", ""DoorModule""]]",0.2411,CORP-05 CORP-05 CORP-07
+Who offers the body state info interface to other components?,paraphrase,"[[""CORP-05"", ""DiagMonitor""]]",0.3004,CORP-02-B CORP-02 CORP-02
+What produces the wheel angle signal?,paraphrase,"[[""CORP-02"", ""WindowController""]]",0.2428,CORP-03-B CORP-01 CORP-09
+What does the door module rely on for battery request?,paraphrase,"[[""CORP-06"", ""ClimateCoordinator""]]",0.0,CORP-01-B CORP-01-B CORP-01-B
+What produces the charge current signal?,paraphrase,"[[""CORP-08"", ""WiperMonitor""]]",0.2428,CORP-03-B CORP-01 CORP-09
+Which software component is the source of the engine status signal?,paraphrase,"[[""CORP-01"", ""BrakeService""]]",0.1846,CORP-07 CORP-04 CORP-03-B

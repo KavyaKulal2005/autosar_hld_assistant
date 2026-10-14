@@ -1,0 +1,23 @@
+DOCUMENT: SYN-TRAIN-11
+TITLE: Synthetic Architecture SYN-TRAIN-11
+REVISION: A
+SECTION: Overview
+CabinFeedLine carries GearStatus from the ClimateHandler.
+The BrakeMonitor publishes GearStatus.
+The BrakeMonitor publishes VehicleAngle through DoorCmdPort.
+The GatewayService provides the DoorModeApi interface to the NetworkController component.
+The GatewayService exposes EngineStateData for VehicleStatus exchange.
+DoorCmdPort carries EngineVoltage from the BatteryService.
+The NetworkController consumes EngineVoltage.
+The BrakeMonitor receives EngineVoltage from NetworkController.
+The BatteryService publishes the VehicleStatus signal via the CabinFeedLine port.
+The BrakeMonitor receives EngineVoltage from BatteryService.
+The BatteryService publishes the GearTemperature signal via the CabinFeedLine port.
+The GatewayService uses EngineStateData.
+CabinFeedLine carries VehicleAngle from the GatewayService.
+The NetworkController provides the EngineStateData interface to the BrakeMonitor component.
+CabinFeedLine carries VehicleAngle from the BrakeMonitor.
+The BatteryService exposes DoorModeApi for GearStatus exchange.
+The BrakeMonitor publishes EngineVoltage.
+See the ReleaseNotes for further details.
+See the DesignReview for further details.

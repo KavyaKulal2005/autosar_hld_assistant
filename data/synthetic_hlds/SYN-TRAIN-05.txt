@@ -1,0 +1,22 @@
+DOCUMENT: SYN-TRAIN-05
+TITLE: Synthetic Architecture SYN-TRAIN-05
+REVISION: A
+SECTION: Overview
+The DoorDriver consumes BatterySpeed.
+BatteryDataOutput carries BrakeTorque from the EngineService.
+The DoorDriver uses BatteryModeApi.
+BatteryDataOutput carries WheelTemperature from the DoorDriver.
+The BodyManager sends BrakeTorque via VehicleFeedChannel.
+The BodyManager receives WheelTemperature from DoorDriver.
+The DoorDriver consumes WheelTemperature.
+The BodyManager component depends on EngineHandler for WheelTemperature.
+The BodyManager uses SensorSpeedService.
+The BodyManager component depends on EngineService for BrakeTorque.
+The BodyManager forwards selected signals to the EngineHandler component.
+DoorDataPort carries BatterySpeed from the BodyManager.
+BatteryDataOutput carries BrakeTorque from the EngineService.
+The DoorDriver publishes BrakeTorque.
+The DoorDriver receives BatterySpeed from EngineHandler.
+The DoorDriver publishes the BrakeTorque signal via the VehicleFeedChannel port.
+See the DesignReview for further details.
+See the ChangeRequest for further details.

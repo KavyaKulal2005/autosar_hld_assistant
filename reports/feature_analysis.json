@@ -1,0 +1,198 @@
+{
+  "mentions": 807,
+  "documents": 17,
+  "classifier_comparison": {
+    "logistic_regression": {
+      "accuracy_mean": 1.0,
+      "macro_f1_mean": 1.0,
+      "macro_f1_std": 0.0,
+      "seconds": 0.57,
+      "heldout_accuracy": 0.983,
+      "heldout_macro_f1": 0.97
+    },
+    "naive_bayes": {
+      "accuracy_mean": 0.997,
+      "macro_f1_mean": 0.997,
+      "macro_f1_std": 0.006,
+      "seconds": 0.07,
+      "heldout_accuracy": 0.904,
+      "heldout_macro_f1": 0.865
+    },
+    "linear_svm": {
+      "accuracy_mean": 1.0,
+      "macro_f1_mean": 1.0,
+      "macro_f1_std": 0.0,
+      "seconds": 0.11,
+      "heldout_accuracy": 0.921,
+      "heldout_macro_f1": 0.905
+    },
+    "random_forest": {
+      "accuracy_mean": 1.0,
+      "macro_f1_mean": 1.0,
+      "macro_f1_std": 0.0,
+      "seconds": 1.48,
+      "heldout_accuracy": 0.967,
+      "heldout_macro_f1": 0.939
+    }
+  },
+  "logreg_tuning": {
+    "by_C": {
+      "0.1": {
+        "accuracy_mean": 0.999,
+        "macro_f1_mean": 0.998,
+        "macro_f1_std": 0.003
+      },
+      "1.0": {
+        "accuracy_mean": 1.0,
+        "macro_f1_mean": 1.0,
+        "macro_f1_std": 0.0
+      },
+      "5.0": {
+        "accuracy_mean": 1.0,
+        "macro_f1_mean": 1.0,
+        "macro_f1_std": 0.0
+      },
+      "20.0": {
+        "accuracy_mean": 1.0,
+        "macro_f1_mean": 1.0,
+        "macro_f1_std": 0.0
+      }
+    },
+    "best_C": 1.0
+  },
+  "feature_selection": {
+    "total_features": 753,
+    "by_k": {
+      "25": {
+        "accuracy_mean": 0.837,
+        "macro_f1_mean": 0.826,
+        "macro_f1_std": 0.064
+      },
+      "50": {
+        "accuracy_mean": 0.91,
+        "macro_f1_mean": 0.926,
+        "macro_f1_std": 0.041
+      },
+      "100": {
+        "accuracy_mean": 0.96,
+        "macro_f1_mean": 0.969,
+        "macro_f1_std": 0.016
+      },
+      "200": {
+        "accuracy_mean": 0.999,
+        "macro_f1_mean": 0.999,
+        "macro_f1_std": 0.001
+      },
+      "all": {
+        "accuracy_mean": 1.0,
+        "macro_f1_mean": 1.0,
+        "macro_f1_std": 0.0
+      }
+    },
+    "top_features_by_chi2": [
+      {
+        "feature": "prev2=see",
+        "chi2": 773.0
+      },
+      {
+        "feature": "next2=further",
+        "chi2": 773.0
+      },
+      {
+        "feature": "ctx=the|for",
+        "chi2": 773.0
+      },
+      {
+        "feature": "next1=for",
+        "chi2": 390.3
+      },
+      {
+        "feature": "suf2=ut",
+        "chi2": 302.7
+      },
+      {
+        "feature": "suf3=put",
+        "chi2": 302.7
+      },
+      {
+        "feature": "ctx=the|interface",
+        "chi2": 253.4
+      },
+      {
+        "feature": "next1=interface",
+        "chi2": 253.4
+      },
+      {
+        "feature": "prev3=the",
+        "chi2": 224.6
+      },
+      {
+        "feature": "suf5=utput",
+        "chi2": 207.1
+      },
+      {
+        "feature": "suf4=tput",
+        "chi2": 207.1
+      },
+      {
+        "feature": "suf6=output",
+        "chi2": 207.1
+      },
+      {
+        "feature": "suf2=er",
+        "chi2": 203.5
+      },
+      {
+        "feature": "next1=carries",
+        "chi2": 183.2
+      },
+      {
+        "feature": "pre4=test",
+        "chi2": 181.9
+      }
+    ]
+  },
+  "pca": {
+    "available": true,
+    "rows": [
+      {
+        "dimensions": 5,
+        "explained_variance": 0.539,
+        "term_hit@3": 0.321,
+        "term_mrr": 0.224
+      },
+      {
+        "dimensions": 10,
+        "explained_variance": 0.728,
+        "term_hit@3": 0.286,
+        "term_mrr": 0.238
+      },
+      {
+        "dimensions": 20,
+        "explained_variance": 0.883,
+        "term_hit@3": 0.357,
+        "term_mrr": 0.258
+      },
+      {
+        "dimensions": 40,
+        "explained_variance": 0.979,
+        "term_hit@3": 0.286,
+        "term_mrr": 0.261
+      },
+      {
+        "dimensions": 70,
+        "explained_variance": 1.0,
+        "term_hit@3": 0.321,
+        "term_mrr": 0.277
+      },
+      {
+        "dimensions": 384,
+        "explained_variance": 1.0,
+        "term_hit@3": 0.536,
+        "term_mrr": 0.424
+      }
+    ],
+    "components_for_90pct_variance": 22
+  },
+  "note": "Synthetic, template-generated data. Results are relative comparisons only."
+}

@@ -1,0 +1,160 @@
+{
+  "mode": "sentence-transformers",
+  "available": true,
+  "n_answerable": 28,
+  "n_unanswerable": 8,
+  "by_type": {
+    "keyword": {
+      "n": 14,
+      "doc_hit@1": 0.5,
+      "term_hit@1": 0.429,
+      "doc_hit@3": 0.5,
+      "term_hit@3": 0.5,
+      "doc_hit@5": 0.714,
+      "term_hit@5": 0.714,
+      "term_mrr": 0.511
+    },
+    "paraphrase": {
+      "n": 14,
+      "doc_hit@1": 0.357,
+      "term_hit@1": 0.143,
+      "doc_hit@3": 0.643,
+      "term_hit@3": 0.571,
+      "doc_hit@5": 0.786,
+      "term_hit@5": 0.714,
+      "term_mrr": 0.338
+    },
+    "overall": {
+      "n": 28,
+      "doc_hit@1": 0.429,
+      "term_hit@1": 0.286,
+      "doc_hit@3": 0.571,
+      "term_hit@3": 0.536,
+      "doc_hit@5": 0.75,
+      "term_hit@5": 0.714,
+      "term_mrr": 0.424
+    }
+  },
+  "test_split_only": {
+    "n": 16,
+    "term_hit@3": 0.5,
+    "term_mrr": 0.421
+  },
+  "abstention": {
+    "score_threshold_only": {
+      "threshold": 0.4245,
+      "dev_balanced_accuracy": 0.958,
+      "test_balanced_accuracy": 0.75,
+      "test_answer_rate": 1.0,
+      "test_abstain_rate": 0.5
+    },
+    "identifier_grounding_plus_threshold": {
+      "threshold": 0.3797,
+      "dev_balanced_accuracy": 0.917,
+      "test_balanced_accuracy": 0.594,
+      "test_answer_rate": 0.688,
+      "test_abstain_rate": 0.5
+    },
+    "app_default_threshold": 0.01,
+    "app_default_abstain_rate_on_unanswerable": 0.0
+  },
+  "answer_quality": {
+    "answered_questions": 21,
+    "answer_contains_gold_term_rate": 0.393,
+    "citation_validity_rate": 1.0
+  },
+  "failures_at_3": [
+    {
+      "question": "Which component provides the SeatStateService interface?",
+      "type": "keyword",
+      "gold": "[[\"CORP-09\", \"BodyService\"]]",
+      "top_score": 0.6087,
+      "retrieved_docs": "CORP-10 CORP-01-B CORP-01"
+    },
+    {
+      "question": "Which software component is the source of the mirror state signal?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-02\", \"LightingCoordinator\"], [\"CORP-02-B\", \"LightingCoordinator\"]]",
+      "top_score": 0.5986,
+      "retrieved_docs": "CORP-03 CORP-09 CORP-03-B"
+    },
+    {
+      "question": "Where does the cabin torque signal originate?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-09\", \"NetworkHandler\"]]",
+      "top_score": 0.5043,
+      "retrieved_docs": "CORP-01 CORP-01-B CORP-02-B"
+    },
+    {
+      "question": "Which component publishes VehicleAngle?",
+      "type": "keyword",
+      "gold": "[[\"CORP-03\", \"NetworkModule\"], [\"CORP-03-B\", \"NetworkModule\"]]",
+      "top_score": 0.533,
+      "retrieved_docs": "CORP-02 CORP-10 CORP-07"
+    },
+    {
+      "question": "Who offers the body state info interface to other components?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-05\", \"DiagMonitor\"]]",
+      "top_score": 0.5517,
+      "retrieved_docs": "CORP-02 CORP-02-B CORP-02"
+    },
+    {
+      "question": "Which component publishes WheelStatus?",
+      "type": "keyword",
+      "gold": "[[\"CORP-06\", \"DiagService\"]]",
+      "top_score": 0.4913,
+      "retrieved_docs": "CORP-01-B CORP-01 CORP-02"
+    },
+    {
+      "question": "What does the seat service rely on for pedal current?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-01-B\", \"LightingController\"]]",
+      "top_score": 0.5648,
+      "retrieved_docs": "CORP-01-B CORP-03-B CORP-01"
+    },
+    {
+      "question": "Who offers the window state interface interface to other components?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-02\", \"NetworkDriver\"], [\"CORP-02-B\", \"NetworkDriver\"]]",
+      "top_score": 0.5813,
+      "retrieved_docs": "CORP-09 CORP-07 CORP-10"
+    },
+    {
+      "question": "Which component publishes WheelTemperature?",
+      "type": "keyword",
+      "gold": "[[\"CORP-07\", \"ChargingModule\"]]",
+      "top_score": 0.5343,
+      "retrieved_docs": "CORP-02 CORP-01-B CORP-01-B"
+    },
+    {
+      "question": "Which component publishes BrakeAngle?",
+      "type": "keyword",
+      "gold": "[[\"CORP-07\", \"BodyService\"]]",
+      "top_score": 0.4863,
+      "retrieved_docs": "CORP-02 CORP-01-B CORP-02-B"
+    },
+    {
+      "question": "Which software component is the source of the engine status signal?",
+      "type": "paraphrase",
+      "gold": "[[\"CORP-01\", \"BrakeService\"]]",
+      "top_score": 0.6111,
+      "retrieved_docs": "CORP-03 CORP-03-B CORP-10"
+    },
+    {
+      "question": "What does GatewayController depend on for WindowCurrent?",
+      "type": "keyword",
+      "gold": "[[\"CORP-07\", \"SensorService\"]]",
+      "top_score": 0.4245,
+      "retrieved_docs": "CORP-02 CORP-02-B CORP-02"
+    },
+    {
+      "question": "Which component publishes DoorCommand?",
+      "type": "keyword",
+      "gold": "[[\"CORP-09\", \"NetworkHandler\"]]",
+      "top_score": 0.497,
+      "retrieved_docs": "CORP-06 CORP-02 CORP-02"
+    }
+  ],
+  "note": "Synthetic, template-generated corpus. Scores are relative, not real-world accuracy."
+}

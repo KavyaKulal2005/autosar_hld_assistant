@@ -1,0 +1,24 @@
+DOCUMENT: SYN-TEST-03
+TITLE: Synthetic Architecture SYN-TEST-03
+REVISION: A
+SECTION: Overview
+SeatTorque is emitted by the DiagDriver on ParkingCmdHook.
+The CruiseCoordinator uses DiagModeData.
+The DiagDriver subscribes to SeatTorque from SeatDriver.
+The DiagSupervisor offers WiperSpeedData to CruiseCoordinator.
+The DiagSupervisor subscribes to SeatTorque from WiperSupervisor.
+The CruiseCoordinator receives ParkingCurrent from WiperSupervisor.
+The SeatDriver receives AmbientLevel from DiagDriver.
+The SeatDriver consumes CruiseRequest through the DiagModeData interface.
+The DiagDriver publishes CruiseRequest.
+Access to PedalTorque is granted through DiagModeData.
+The CruiseCoordinator forwards selected signals to the WiperSupervisor component.
+The DiagSupervisor uses WiperSpeedData.
+Via SeatCmdOutput, the CruiseCoordinator distributes AmbientLevel.
+The CruiseCoordinator consumes ParkingCurrent.
+Access to ParkingTorque is granted through DiagModeData.
+Access to CruiseRequest is granted through WiperSpeedData.
+Via SeatCmdOutput, the DiagSupervisor distributes ParkingTorque.
+ParkingCmdHook carries SeatTorque from the CruiseCoordinator.
+See the TestPlan for further details.
+See the ChangeRequest for further details.

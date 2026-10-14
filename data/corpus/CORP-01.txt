@@ -1,0 +1,45 @@
+DOCUMENT: CORP-01
+TITLE: Synthetic Braking Architecture
+REVISION: A
+SECTION: Overview
+This synthetic high-level design describes the braking software architecture.
+It defines 5 software components, 3 interfaces and 7 signals.
+
+SECTION: Component Catalogue
+- SeatDriver: arbitrates access to shared vehicle resources.
+- LightingController: coordinates requests from other software components.
+- ChargingDriver: arbitrates access to shared vehicle resources.
+- BrakeService: reports diagnostic events to the diagnostic manager.
+- ParkingMonitor: monitors the health of connected sensors.
+
+SECTION: Signals
+The BrakeService publishes the EngineStatus signal via the WheelStatusInput port and the SeatDriver consumes EngineStatus.
+The ParkingMonitor publishes the PedalCurrent signal via the CabinFeedChannel port and the ChargingDriver consumes PedalCurrent.
+The BrakeService publishes the CruiseRequest signal via the CabinFeedChannel port and the SeatDriver consumes CruiseRequest.
+The SeatDriver publishes the VehicleRequest signal via the CabinFeedChannel port and the ParkingMonitor consumes VehicleRequest.
+The SeatDriver publishes the CabinLevel signal via the CabinFeedChannel port and the ParkingMonitor consumes CabinLevel.
+The ParkingMonitor publishes the WiperTemperature signal via the WheelStatusInput port and the SeatDriver consumes WiperTemperature.
+The ChargingDriver publishes the AmbientPosition signal via the WheelStatusInput port and the LightingController consumes AmbientPosition.
+
+SECTION: Interfaces
+The BrakeService provides the GatewaySpeedInfo interface to the SeatDriver component for PedalCurrent.
+| BrakeService | GatewaySpeedInfo | SeatDriver | PedalCurrent |
+The SeatDriver provides the MirrorTorqueService interface to the LightingController component for PedalCurrent.
+| SeatDriver | MirrorTorqueService | LightingController | PedalCurrent |
+The SeatDriver provides the SensorSpeedService interface to the LightingController component for EngineStatus.
+| SeatDriver | SensorSpeedService | LightingController | EngineStatus |
+
+SECTION: Dependencies
+The ParkingMonitor component depends on LightingController for PedalCurrent.
+The BrakeService component depends on ChargingDriver for PedalCurrent.
+The ChargingDriver component depends on SeatDriver for VehicleRequest.
+The SeatDriver component depends on ParkingMonitor for WiperTemperature.
+The BrakeService component depends on ParkingMonitor for EngineStatus.
+The BrakeService component depends on BatteryProxy for EngineStatus.
+The SeatDriver consumes BrakeDiagnostics, which no component is documented to publish.
+
+SECTION: Test Considerations
+Each interface requires one positive and one negative integration test.
+
+SECTION: Revision History
+Revision A: synthetic release for evaluation.

@@ -1,0 +1,10 @@
+document_id,component_name,interface_name,signal_name,dependency
+HLD-01,SensorManager,SpeedData,VehicleSpeed,SpeedSensor
+HLD-01,BrakeController,SpeedData,VehicleSpeed,SensorManager
+HLD-01,BrakeController,BrakeStatusPort,BrakeStatus,BrakeModule
+HLD-01,VehicleGateway,GatewayInput,VehicleSpeed,SensorManager
+HLD-01,BodyControl,,CabinLightCommand,VehicleGateway
+HLD-02,VehicleGateway,SpeedData,VehicleSpeed,SensorManager
+HLD-02,VehicleGateway,GatewayStatusPort,GatewayHealth,BodyControl
+HLD-02,BodyControl,,GatewayHealth,VehicleGateway
+HLD-02,DoorSensor,DoorStatusPort,DoorStatus,BodyControl

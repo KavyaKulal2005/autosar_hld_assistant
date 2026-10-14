@@ -1,0 +1,20 @@
+DOCUMENT: SYN-TRAIN-08
+TITLE: Synthetic Architecture SYN-TRAIN-08
+REVISION: A
+SECTION: Overview
+The GatewayController exposes ClimateModeData for EngineCommand exchange.
+The GatewayController component depends on ClimateHandler for DoorTorque.
+The NetworkMonitor uses SteeringStateContract.
+The NetworkMonitor uses ClimateModeData.
+The NetworkMonitor publishes the BatteryCommand signal via the WheelDataLink port.
+The ClimateMonitor exposes SteeringStateContract for EngineCommand exchange.
+The GatewayController exposes SteeringStateContract for DoorTorque exchange.
+The ClimateMonitor publishes VehicleTorque.
+The ClimateHandler forwards selected signals to the ClimateMonitor component.
+The ClimateMonitor consumes VehicleTorque through the SteeringStateContract interface.
+The ClimateMonitor publishes BatteryCommand through GearDataLink.
+GearDataLink carries EngineCommand from the NetworkMonitor.
+The NetworkMonitor publishes the DoorTorque signal via the WheelDataLink port.
+The ClimateHandler publishes EngineCommand.
+See the ChangeRequest for further details.
+See the TestPlan for further details.

@@ -1,0 +1,189 @@
+{
+  "train_documents": 12,
+  "test_documents": 5,
+  "synthetic_held_out": {
+    "regex_baseline": {
+      "accuracy": 0.232,
+      "macro_f1": 0.274,
+      "per_class": {
+        "component": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 25
+        },
+        "interface": {
+          "precision": 1.0,
+          "recall": 0.455,
+          "f1-score": 0.625,
+          "support": 11
+        },
+        "port": {
+          "precision": 1.0,
+          "recall": 0.308,
+          "f1-score": 0.471,
+          "support": 13
+        },
+        "signal": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 23
+        }
+      }
+    },
+    "suffix_rule_baseline": {
+      "accuracy": 0.622,
+      "macro_f1": 0.736,
+      "per_class": {
+        "component": {
+          "precision": 1.0,
+          "recall": 0.64,
+          "f1-score": 0.78,
+          "support": 25
+        },
+        "interface": {
+          "precision": 1.0,
+          "recall": 0.818,
+          "f1-score": 0.9,
+          "support": 11
+        },
+        "port": {
+          "precision": 1.0,
+          "recall": 0.538,
+          "f1-score": 0.7,
+          "support": 13
+        },
+        "signal": {
+          "precision": 1.0,
+          "recall": 0.391,
+          "f1-score": 0.562,
+          "support": 23
+        }
+      }
+    },
+    "trained_logreg": {
+      "accuracy": 0.988,
+      "macro_f1": 0.979,
+      "per_class": {
+        "component": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 25
+        },
+        "interface": {
+          "precision": 0.917,
+          "recall": 1.0,
+          "f1-score": 0.957,
+          "support": 11
+        },
+        "port": {
+          "precision": 1.0,
+          "recall": 0.923,
+          "f1-score": 0.96,
+          "support": 13
+        },
+        "signal": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 23
+        }
+      }
+    }
+  },
+  "original_samples": {
+    "regex_baseline": {
+      "accuracy": 0.957,
+      "macro_f1": 0.95,
+      "per_class": {
+        "component": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9
+        },
+        "interface": {
+          "precision": 1.0,
+          "recall": 0.667,
+          "f1-score": 0.8,
+          "support": 3
+        },
+        "port": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 3
+        },
+        "signal": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 8
+        }
+      }
+    },
+    "suffix_rule_baseline": {
+      "accuracy": 0.957,
+      "macro_f1": 0.914,
+      "per_class": {
+        "component": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9
+        },
+        "interface": {
+          "precision": 1.0,
+          "recall": 0.667,
+          "f1-score": 0.8,
+          "support": 3
+        },
+        "port": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1-score": 0.857,
+          "support": 3
+        },
+        "signal": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 8
+        }
+      }
+    },
+    "trained_logreg": {
+      "accuracy": 0.913,
+      "macro_f1": 0.847,
+      "per_class": {
+        "component": {
+          "precision": 0.9,
+          "recall": 1.0,
+          "f1-score": 0.947,
+          "support": 9
+        },
+        "interface": {
+          "precision": 1.0,
+          "recall": 0.333,
+          "f1-score": 0.5,
+          "support": 3
+        },
+        "port": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 3
+        },
+        "signal": {
+          "precision": 0.889,
+          "recall": 1.0,
+          "f1-score": 0.941,
+          "support": 8
+        }
+      }
+    }
+  },
+  "note": "Synthetic, template-generated data. The original-sample gold labels were assigned by hand. Scores show relative behaviour on unseen identifiers, not real-world AUTOSAR accuracy."
+}

@@ -1,0 +1,12 @@
+{
+  "mode": "tfidf",
+  "threshold": 0.2428,
+  "n_answerable": 28,
+  "n_unanswerable": 8,
+  "old_extractive_answer_contains_gold": 0.714,
+  "grounded_answer_contains_gold": 0.679,
+  "structured_answer_rate": 0.679,
+  "correct_abstention_rate_on_unanswerable": 1.0,
+  "citation_validity_rate": 1.0,
+  "note": "Synthetic, template-generated corpus. Relative comparison only."
+}

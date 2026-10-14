@@ -1,0 +1,24 @@
+DOCUMENT: SYN-TRAIN-06
+TITLE: Synthetic Architecture SYN-TRAIN-06
+REVISION: A
+SECTION: Overview
+The BodyMonitor component depends on BodyController for WheelAngle.
+The BodyController component depends on GatewayMonitor for CabinAngle.
+The BodyMonitor receives WheelAngle from BrakeManager.
+The BodyMonitor component depends on BodyController for BatteryHealth.
+The BrakeManager provides the NetworkModeInterface interface to the NetworkModule component.
+The BodyController exposes DoorModeInfo for BatteryHealth exchange.
+The GatewayMonitor provides the DoorModeInfo interface to the BrakeManager component.
+The BodyMonitor publishes BatteryHealth.
+The GatewayMonitor uses DoorModeInfo.
+EngineCmdInput carries WheelAngle from the NetworkModule.
+The NetworkModule publishes CabinAngle.
+The GatewayController consumes CabinAngle through the NetworkModeInterface interface.
+The BodyController forwards selected signals to the BodyMonitor component.
+The BodyController consumes CabinAngle.
+The BrakeManager publishes the CabinAngle signal via the EngineCmdInput port.
+The GatewayMonitor consumes SteeringVoltage through the NetworkModeService interface.
+The NetworkModule uses NetworkModeService.
+EngineCmdInput carries BatteryHealth from the BodyMonitor.
+See the SystemOverview for further details.
+See the ReleaseNotes for further details.
